@@ -58,8 +58,6 @@
             this.lblUzanti = new System.Windows.Forms.Label();
             this.tbUzanti = new System.Windows.Forms.MaskedTextBox();
             this.btnIslem = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnIslem2 = new System.Windows.Forms.Button();
             this.lblgosterge = new System.Windows.Forms.Label();
             this.tbArama = new System.Windows.Forms.TextBox();
@@ -382,25 +380,6 @@
             this.btnIslem.UseVisualStyleBackColor = false;
             this.btnIslem.Click += new System.EventHandler(this.btnIslem_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(1299, 585);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 45;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1318, 634);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 46;
-            this.label1.Text = "label1";
-            // 
             // btnIslem2
             // 
             this.btnIslem2.BackColor = System.Drawing.Color.Khaki;
@@ -447,8 +426,6 @@
             this.Controls.Add(this.tbArama);
             this.Controls.Add(this.lblgosterge);
             this.Controls.Add(this.btnIslem2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnIslem);
             this.Controls.Add(this.tbUzanti);
             this.Controls.Add(this.lblUzanti);
@@ -517,8 +494,6 @@
         private System.Windows.Forms.Label lblUzanti;
         private System.Windows.Forms.MaskedTextBox tbUzanti;
         private System.Windows.Forms.Button btnIslem;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnIslem2;
         private System.Windows.Forms.Label lblgosterge;
         private System.Windows.Forms.TextBox tbArama;
