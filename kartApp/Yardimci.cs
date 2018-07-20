@@ -48,6 +48,18 @@ namespace kartApp
             return sorgu;
         }
 
+        public static string SilinenGoster()
+        {
+            string sorgu = "select Kimlik, Ad, Soyad, Unvan, Tarih, Tel, Fax, Mail, Adres, SirketAd, Web from tblOgrenci where AktifPasif='0'";
+            return sorgu;
+        }
+
+        public static string GeriAl(string satir)
+        {
+            string sorgu = "update tblOgrenci set AktifPasif= 1 where Kimlik= " + satir;
+            return sorgu;
+        }
+
 
     }
 }

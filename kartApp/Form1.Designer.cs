@@ -58,6 +58,11 @@
             this.lblUzanti = new System.Windows.Forms.Label();
             this.tbUzanti = new System.Windows.Forms.MaskedTextBox();
             this.btnIslem = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnIslem2 = new System.Windows.Forms.Button();
+            this.lblgosterge = new System.Windows.Forms.Label();
+            this.tbArama = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdOgrenci)).BeginInit();
             this.SuspendLayout();
@@ -65,7 +70,7 @@
             // lblAdi
             // 
             this.lblAdi.BackColor = System.Drawing.Color.Firebrick;
-            this.lblAdi.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblAdi.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAdi.ForeColor = System.Drawing.Color.Black;
             this.lblAdi.Location = new System.Drawing.Point(367, 44);
             this.lblAdi.Name = "lblAdi";
@@ -88,7 +93,7 @@
             // lblSoyadi
             // 
             this.lblSoyadi.BackColor = System.Drawing.Color.Firebrick;
-            this.lblSoyadi.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblSoyadi.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.lblSoyadi.ForeColor = System.Drawing.Color.Black;
             this.lblSoyadi.Location = new System.Drawing.Point(543, 44);
             this.lblSoyadi.Name = "lblSoyadi";
@@ -100,7 +105,7 @@
             // lblUnvani
             // 
             this.lblUnvani.BackColor = System.Drawing.Color.Firebrick;
-            this.lblUnvani.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblUnvani.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.lblUnvani.ForeColor = System.Drawing.Color.Black;
             this.lblUnvani.Location = new System.Drawing.Point(719, 44);
             this.lblUnvani.Name = "lblUnvani";
@@ -112,7 +117,7 @@
             // lblTelefonu
             // 
             this.lblTelefonu.BackColor = System.Drawing.Color.Firebrick;
-            this.lblTelefonu.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblTelefonu.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.lblTelefonu.ForeColor = System.Drawing.Color.Black;
             this.lblTelefonu.Location = new System.Drawing.Point(895, 44);
             this.lblTelefonu.Name = "lblTelefonu";
@@ -123,87 +128,87 @@
             // 
             // tbAdi
             // 
-            this.tbAdi.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.tbAdi.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.tbAdi.Location = new System.Drawing.Point(371, 93);
             this.tbAdi.Mask = "?????????????????????????????????????????????????????????????";
             this.tbAdi.MinimumSize = new System.Drawing.Size(166, 44);
             this.tbAdi.Name = "tbAdi";
-            this.tbAdi.Size = new System.Drawing.Size(166, 31);
+            this.tbAdi.Size = new System.Drawing.Size(166, 45);
             this.tbAdi.TabIndex = 19;
             this.tbAdi.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbSoyadi
             // 
-            this.tbSoyadi.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.tbSoyadi.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.tbSoyadi.Location = new System.Drawing.Point(547, 93);
             this.tbSoyadi.Mask = "??????????????????????????????????????????????????????";
             this.tbSoyadi.MinimumSize = new System.Drawing.Size(166, 44);
             this.tbSoyadi.Name = "tbSoyadi";
-            this.tbSoyadi.Size = new System.Drawing.Size(166, 31);
+            this.tbSoyadi.Size = new System.Drawing.Size(166, 45);
             this.tbSoyadi.TabIndex = 20;
             this.tbSoyadi.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbUnvani
             // 
-            this.tbUnvani.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.tbUnvani.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.tbUnvani.Location = new System.Drawing.Point(723, 93);
             this.tbUnvani.Mask = "?????????????????????????????????????????????????????????";
             this.tbUnvani.MinimumSize = new System.Drawing.Size(166, 44);
             this.tbUnvani.Name = "tbUnvani";
-            this.tbUnvani.Size = new System.Drawing.Size(166, 31);
+            this.tbUnvani.Size = new System.Drawing.Size(166, 45);
             this.tbUnvani.TabIndex = 21;
             this.tbUnvani.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbTelefonu
             // 
-            this.tbTelefonu.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.tbTelefonu.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.tbTelefonu.Location = new System.Drawing.Point(899, 93);
-            this.tbTelefonu.Mask = "(999) 000-0000";
+            this.tbTelefonu.Mask = "(000) 000-0000";
             this.tbTelefonu.MinimumSize = new System.Drawing.Size(166, 44);
             this.tbTelefonu.Name = "tbTelefonu";
-            this.tbTelefonu.Size = new System.Drawing.Size(166, 31);
+            this.tbTelefonu.Size = new System.Drawing.Size(166, 45);
             this.tbTelefonu.TabIndex = 22;
             this.tbTelefonu.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbMail
             // 
-            this.tbMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.tbMail.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.tbMail.Location = new System.Drawing.Point(1075, 93);
             this.tbMail.Mask = "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC";
             this.tbMail.MinimumSize = new System.Drawing.Size(166, 44);
             this.tbMail.Name = "tbMail";
-            this.tbMail.Size = new System.Drawing.Size(166, 31);
+            this.tbMail.Size = new System.Drawing.Size(166, 45);
             this.tbMail.TabIndex = 23;
             this.tbMail.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbMail.ValidatingType = typeof(System.DateTime);
             // 
             // tbFaks
             // 
-            this.tbFaks.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.tbFaks.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.tbFaks.Location = new System.Drawing.Point(371, 205);
             this.tbFaks.Mask = "0000000000000000000000";
             this.tbFaks.MinimumSize = new System.Drawing.Size(166, 44);
             this.tbFaks.Name = "tbFaks";
-            this.tbFaks.Size = new System.Drawing.Size(166, 31);
+            this.tbFaks.Size = new System.Drawing.Size(166, 45);
             this.tbFaks.TabIndex = 25;
             this.tbFaks.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbFaks.ValidatingType = typeof(int);
             // 
             // tbWebSitesi
             // 
-            this.tbWebSitesi.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.tbWebSitesi.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.tbWebSitesi.Location = new System.Drawing.Point(547, 205);
             this.tbWebSitesi.Mask = "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC";
             this.tbWebSitesi.MinimumSize = new System.Drawing.Size(166, 44);
             this.tbWebSitesi.Name = "tbWebSitesi";
-            this.tbWebSitesi.Size = new System.Drawing.Size(166, 31);
+            this.tbWebSitesi.Size = new System.Drawing.Size(166, 45);
             this.tbWebSitesi.TabIndex = 26;
             this.tbWebSitesi.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblWebSitesi
             // 
             this.lblWebSitesi.BackColor = System.Drawing.Color.Firebrick;
-            this.lblWebSitesi.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblWebSitesi.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.lblWebSitesi.ForeColor = System.Drawing.Color.Black;
             this.lblWebSitesi.Location = new System.Drawing.Point(543, 156);
             this.lblWebSitesi.Name = "lblWebSitesi";
@@ -214,20 +219,20 @@
             // 
             // tbAdresi
             // 
-            this.tbAdresi.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.tbAdresi.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.tbAdresi.Location = new System.Drawing.Point(723, 205);
             this.tbAdresi.Mask = "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC" +
     "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC";
             this.tbAdresi.MinimumSize = new System.Drawing.Size(166, 44);
             this.tbAdresi.Name = "tbAdresi";
-            this.tbAdresi.Size = new System.Drawing.Size(166, 31);
+            this.tbAdresi.Size = new System.Drawing.Size(166, 45);
             this.tbAdresi.TabIndex = 27;
             this.tbAdresi.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblAdresi
             // 
             this.lblAdresi.BackColor = System.Drawing.Color.Firebrick;
-            this.lblAdresi.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblAdresi.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.lblAdresi.ForeColor = System.Drawing.Color.Black;
             this.lblAdresi.Location = new System.Drawing.Point(719, 156);
             this.lblAdresi.Name = "lblAdresi";
@@ -238,19 +243,19 @@
             // 
             // tbSirketAdi
             // 
-            this.tbSirketAdi.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.tbSirketAdi.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.tbSirketAdi.Location = new System.Drawing.Point(899, 205);
             this.tbSirketAdi.Mask = "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC";
             this.tbSirketAdi.MinimumSize = new System.Drawing.Size(166, 44);
             this.tbSirketAdi.Name = "tbSirketAdi";
-            this.tbSirketAdi.Size = new System.Drawing.Size(166, 31);
+            this.tbSirketAdi.Size = new System.Drawing.Size(166, 45);
             this.tbSirketAdi.TabIndex = 28;
             this.tbSirketAdi.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblSirketAdi
             // 
             this.lblSirketAdi.BackColor = System.Drawing.Color.Firebrick;
-            this.lblSirketAdi.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblSirketAdi.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.lblSirketAdi.ForeColor = System.Drawing.Color.Black;
             this.lblSirketAdi.Location = new System.Drawing.Point(895, 156);
             this.lblSirketAdi.Name = "lblSirketAdi";
@@ -274,7 +279,7 @@
             // btnSil
             // 
             this.btnSil.BackColor = System.Drawing.Color.Khaki;
-            this.btnSil.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnSil.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.btnSil.Location = new System.Drawing.Point(1252, 306);
             this.btnSil.Name = "btnSil";
             this.btnSil.Size = new System.Drawing.Size(166, 44);
@@ -286,7 +291,7 @@
             // lblMail
             // 
             this.lblMail.BackColor = System.Drawing.Color.Firebrick;
-            this.lblMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblMail.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.lblMail.ForeColor = System.Drawing.Color.Black;
             this.lblMail.Location = new System.Drawing.Point(1071, 44);
             this.lblMail.Name = "lblMail";
@@ -298,7 +303,7 @@
             // lblFaks
             // 
             this.lblFaks.BackColor = System.Drawing.Color.Firebrick;
-            this.lblFaks.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblFaks.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.lblFaks.ForeColor = System.Drawing.Color.Black;
             this.lblFaks.Location = new System.Drawing.Point(367, 156);
             this.lblFaks.Name = "lblFaks";
@@ -309,6 +314,8 @@
             // 
             // grdOgrenci
             // 
+            this.grdOgrenci.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.grdOgrenci.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grdOgrenci.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.grdOgrenci.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -322,7 +329,7 @@
             // lblTarih
             // 
             this.lblTarih.BackColor = System.Drawing.Color.Firebrick;
-            this.lblTarih.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblTarih.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.lblTarih.ForeColor = System.Drawing.Color.Black;
             this.lblTarih.Location = new System.Drawing.Point(1071, 156);
             this.lblTarih.Name = "lblTarih";
@@ -333,11 +340,11 @@
             // 
             // tbTarih
             // 
-            this.tbTarih.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.tbTarih.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.tbTarih.Location = new System.Drawing.Point(1076, 205);
             this.tbTarih.Mask = "00/00/0000";
             this.tbTarih.Name = "tbTarih";
-            this.tbTarih.Size = new System.Drawing.Size(165, 31);
+            this.tbTarih.Size = new System.Drawing.Size(165, 45);
             this.tbTarih.TabIndex = 29;
             this.tbTarih.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbTarih.ValidatingType = typeof(System.DateTime);
@@ -345,7 +352,7 @@
             // lblUzanti
             // 
             this.lblUzanti.BackColor = System.Drawing.Color.Firebrick;
-            this.lblUzanti.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblUzanti.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.lblUzanti.ForeColor = System.Drawing.Color.Black;
             this.lblUzanti.Location = new System.Drawing.Point(1247, 44);
             this.lblUzanti.Name = "lblUzanti";
@@ -356,17 +363,17 @@
             // 
             // tbUzanti
             // 
-            this.tbUzanti.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.tbUzanti.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.tbUzanti.Location = new System.Drawing.Point(1252, 93);
             this.tbUzanti.Mask = "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC";
             this.tbUzanti.Name = "tbUzanti";
-            this.tbUzanti.Size = new System.Drawing.Size(165, 31);
+            this.tbUzanti.Size = new System.Drawing.Size(165, 45);
             this.tbUzanti.TabIndex = 24;
             // 
             // btnIslem
             // 
             this.btnIslem.BackColor = System.Drawing.Color.Khaki;
-            this.btnIslem.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnIslem.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.btnIslem.Location = new System.Drawing.Point(1252, 256);
             this.btnIslem.Name = "btnIslem";
             this.btnIslem.Size = new System.Drawing.Size(166, 44);
@@ -375,6 +382,61 @@
             this.btnIslem.UseVisualStyleBackColor = false;
             this.btnIslem.Click += new System.EventHandler(this.btnIslem_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1299, 585);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 45;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(1318, 634);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 46;
+            this.label1.Text = "label1";
+            // 
+            // btnIslem2
+            // 
+            this.btnIslem2.BackColor = System.Drawing.Color.Khaki;
+            this.btnIslem2.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnIslem2.Location = new System.Drawing.Point(1252, 356);
+            this.btnIslem2.Name = "btnIslem2";
+            this.btnIslem2.Size = new System.Drawing.Size(166, 44);
+            this.btnIslem2.TabIndex = 32;
+            this.btnIslem2.Text = "SİLİNENLER";
+            this.btnIslem2.UseVisualStyleBackColor = false;
+            this.btnIslem2.Click += new System.EventHandler(this.btnIslem2_Click);
+            // 
+            // lblgosterge
+            // 
+            this.lblgosterge.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblgosterge.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblgosterge.ForeColor = System.Drawing.Color.FloralWhite;
+            this.lblgosterge.Location = new System.Drawing.Point(1253, 156);
+            this.lblgosterge.Name = "lblgosterge";
+            this.lblgosterge.Size = new System.Drawing.Size(164, 80);
+            this.lblgosterge.TabIndex = 47;
+            this.lblgosterge.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tbArama
+            // 
+            this.tbArama.BackColor = System.Drawing.Color.Khaki;
+            this.tbArama.Font = new System.Drawing.Font("Segoe Print", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbArama.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.tbArama.Location = new System.Drawing.Point(1252, 427);
+            this.tbArama.Multiline = true;
+            this.tbArama.Name = "tbArama";
+            this.tbArama.Size = new System.Drawing.Size(165, 47);
+            this.tbArama.TabIndex = 48;
+            this.tbArama.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbArama.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -382,6 +444,11 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1444, 825);
+            this.Controls.Add(this.tbArama);
+            this.Controls.Add(this.lblgosterge);
+            this.Controls.Add(this.btnIslem2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnIslem);
             this.Controls.Add(this.tbUzanti);
             this.Controls.Add(this.lblUzanti);
@@ -450,6 +517,11 @@
         private System.Windows.Forms.Label lblUzanti;
         private System.Windows.Forms.MaskedTextBox tbUzanti;
         private System.Windows.Forms.Button btnIslem;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnIslem2;
+        private System.Windows.Forms.Label lblgosterge;
+        private System.Windows.Forms.TextBox tbArama;
     }
 }
 
