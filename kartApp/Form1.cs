@@ -255,6 +255,7 @@ namespace kartApp
             lblWebSitesi.BackColor = Color.Transparent;
             lblTarih.BackColor = Color.Transparent;
             lblgosterge.BackColor = Color.Transparent;
+
         }
 
 
