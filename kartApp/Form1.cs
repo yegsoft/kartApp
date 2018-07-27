@@ -17,7 +17,19 @@ namespace kartApp
             InitializeComponent();
             transparan();
             grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriGetir());
-            grdOgrenci.Sort(grdOgrenci.Columns["Kimlik"], ListSortDirection.Ascending);  
+            grdOgrenci.Sort(grdOgrenci.Columns["ID"], ListSortDirection.Ascending);
+            grdOgrenciRapor.DataSource = Yardimci.Tablo(Yardimci.VeriGetir());
+
+
+
+            for (int i = 1; i <= 11; i++)
+            {
+                grdOgrenciRapor.Columns[i].Visible = false;
+            }
+
+            cmbKategori.DataSource = Yardimci.Tablo(Yardimci.KategoriGetir());
+            cmbKategori.DisplayMember = "KatAdi";
+            cmbKategori.ValueMember = "KatID";
         }
 
 
@@ -25,11 +37,11 @@ namespace kartApp
         private void grdOgrenci_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
             satir = grdOgrenci.CurrentRow.Cells[0].Value.ToString();
-            if (btnIslem2.Text == "SİLİNENLER")
+            if (btnIslem2.Text == "PASİFLER")
             {
                 btnIslem.Text = "GÜNCELLE";
             }
-            else if (btnIslem2.Text == "ANA LİSTE")
+            else if (btnIslem2.Text == "AKTİFLER")
             {
                 btnIslem.Text = "GERİ AL";
             }
@@ -37,6 +49,11 @@ namespace kartApp
 
 
         private void Form1_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
         {
             btnIslem.Text = "KAYDET";
         }
@@ -61,17 +78,17 @@ namespace kartApp
 
         private void btnIslem2_Click(object sender, EventArgs e)
         {
-            if (btnIslem2.Text == "SİLİNENLER")
+            if (btnIslem2.Text == "PASİFLER")
             {
                 grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.SilinenGoster());
-                grdOgrenci.Sort(grdOgrenci.Columns["Kimlik"], ListSortDirection.Ascending);
-                btnIslem2.Text = "ANA LİSTE";
+                grdOgrenci.Sort(grdOgrenci.Columns["ID"], ListSortDirection.Ascending);
+                btnIslem2.Text = "AKTİFLER";
             }
-            else if (btnIslem2.Text == "ANA LİSTE")
+            else if (btnIslem2.Text == "AKTİFLER")
             {
                 grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriGetir());
-                grdOgrenci.Sort(grdOgrenci.Columns["Kimlik"], ListSortDirection.Ascending);
-                btnIslem2.Text = "SİLİNENLER";
+                grdOgrenci.Sort(grdOgrenci.Columns["ID"], ListSortDirection.Ascending);
+                btnIslem2.Text = "PASİFLER";
             }
         }
 
@@ -82,16 +99,27 @@ namespace kartApp
             {
                 grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriSil(satir));
                 grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriGetir());
-                grdOgrenci.Sort(grdOgrenci.Columns["Kimlik"], ListSortDirection.Ascending);
-                lblKayitBasarili.Text = "SİLİNDİ";
+                grdOgrenci.Sort(grdOgrenci.Columns["ID"], ListSortDirection.Ascending);
+                lblKayitBasarili.Text = "PASİFLENDİ";
                 time();
             }
         }
 
 
+        private void btnKaliciSil_Click(object sender, EventArgs e)
+        {
+            grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.KaliciSil(satir));
+            grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriGetir());
+            grdOgrenci.Sort(grdOgrenci.Columns["ID"], ListSortDirection.Ascending);
+            lblKayitBasarili.Text = "SİLİNDİ";
+            time();
+
+        }
+
+
         public void kaydet ()
         {            
-            int sonuc = zaten(tbTelefonu.Text);
+            int sonuc = zaten(tbAdi.Text.Trim(),tbSoyadi.Text.Trim());
             if (sonuc == 0)
             {
                 tbAdi.Text = tbAdi.Text.Trim();
@@ -105,6 +133,8 @@ namespace kartApp
                 tbAdresi.Text = tbAdresi.Text.Trim();
                 tbSirketAdi.Text = tbSirketAdi.Text.Trim();
                 tbWebSitesi.Text = tbWebSitesi.Text.Trim();
+                tbGsm.Text = tbGsm.Text.Trim();
+
 
                 string ad = Convert.ToString(tbAdi.Text);
                 string soyad = Convert.ToString(tbSoyadi.Text);
@@ -116,12 +146,13 @@ namespace kartApp
                 string adres = Convert.ToString(tbAdresi.Text);
                 string sirket = Convert.ToString(tbSirketAdi.Text);
                 string web = Convert.ToString(tbWebSitesi.Text);
+                string gsm = Convert.ToString(tbGsm.Text);
 
                 try
                 {
-                    grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriKaydet(ad, soyad, unvan, tarih, tel, fax, mail, adres, sirket, web));
+                    grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriKaydet(ad, soyad, unvan, tarih, tel, gsm, fax, mail, adres, sirket, web));
                     grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriGetir());
-                    grdOgrenci.Sort(grdOgrenci.Columns["Kimlik"], ListSortDirection.Ascending);
+                    grdOgrenci.Sort(grdOgrenci.Columns["ID"], ListSortDirection.Ascending);
 
                 }
                 catch (Exception ex)
@@ -134,20 +165,81 @@ namespace kartApp
             }
             else if (sonuc == 1)
             {
-                lblKayitBasarili.Text = "ZATEN VAR";
-                time();
 
-                lblgosterge.Text = grdOgrenci.CurrentRow.Cells[0].Value.ToString();                
- 
-                tbAdi.Text = grdOgrenci.Rows[tüm].Cells[1].Value.ToString();
-                tbSoyadi.Text = grdOgrenci.Rows[tüm].Cells[2].Value.ToString();
-                tbUnvani.Text = grdOgrenci.Rows[tüm].Cells[3].Value.ToString();
-                tbTarih.Text = grdOgrenci.Rows[tüm].Cells[4].Value.ToString();
-                tbTelefonu.Text = grdOgrenci.Rows[tüm].Cells[5].Value.ToString();
-                tbFaks.Text = grdOgrenci.Rows[tüm].Cells[6].Value.ToString();                
-                tbAdresi.Text = grdOgrenci.Rows[tüm].Cells[8].Value.ToString();
-                tbSirketAdi.Text = grdOgrenci.Rows[tüm].Cells[9].Value.ToString();
-                tbWebSitesi.Text = grdOgrenci.Rows[tüm].Cells[10].Value.ToString();
+                DialogResult dialogresult = MessageBox.Show("Aynı olmadığına emin misiniz?", "Bu kayıt muhtemelen var",MessageBoxButtons.YesNo);
+                if (dialogresult == DialogResult.Yes)
+                {
+                    tbAdi.Text = tbAdi.Text.Trim();
+                    tbSoyadi.Text = tbSoyadi.Text.Trim();
+                    tbUnvani.Text = tbUnvani.Text.Trim();
+                    tbTarih.Text = tbTarih.Text.Trim();
+                    tbTelefonu.Text = tbTelefonu.Text.Trim();
+                    tbFaks.Text = tbFaks.Text.Trim();
+                    tbMail.Text = tbMail.Text.Trim();
+                    tbUzanti.Text = tbUzanti.Text.Trim();
+                    tbAdresi.Text = tbAdresi.Text.Trim();
+                    tbSirketAdi.Text = tbSirketAdi.Text.Trim();
+                    tbWebSitesi.Text = tbWebSitesi.Text.Trim();
+                    tbGsm.Text = tbGsm.Text.Trim();
+
+
+                    string ad = Convert.ToString(tbAdi.Text);
+                    string soyad = Convert.ToString(tbSoyadi.Text);
+                    string unvan = Convert.ToString(tbUnvani.Text);
+                    string tarih = Convert.ToString(tbTarih.Text);
+                    string tel = Convert.ToString(tbTelefonu.Text);
+                    string fax = Convert.ToString(tbFaks.Text);
+                    string mail = Convert.ToString(tbMail.Text) + "@" + Convert.ToString(tbUzanti.Text);
+                    string adres = Convert.ToString(tbAdresi.Text);
+                    string sirket = Convert.ToString(tbSirketAdi.Text);
+                    string web = Convert.ToString(tbWebSitesi.Text);
+                    string gsm = Convert.ToString(tbGsm.Text);
+
+                    grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriKaydet(ad, soyad, unvan, tarih, tel, gsm, fax, mail, adres, sirket, web));
+                    grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriGetir());
+                    grdOgrenci.Sort(grdOgrenci.Columns["ID"], ListSortDirection.Ascending);
+
+                    lblKayitBasarili.Text = "KAYIT BAŞARILI";
+                    time();
+
+
+                }
+                else if (dialogresult == DialogResult.No)
+                {
+                    lblKayitBasarili.Text = "İŞLEM İPTAL";
+                    time();
+
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                //lblKayitBasarili.Text = "ZATEN VAR";
+                //time();
+
+                //lblgosterge.Text = grdOgrenci.CurrentRow.Cells[0].Value.ToString();                
+
+                //tbAdi.Text = grdOgrenci.Rows[tüm].Cells[1].Value.ToString();
+                //tbSoyadi.Text = grdOgrenci.Rows[tüm].Cells[2].Value.ToString();
+                //tbUnvani.Text = grdOgrenci.Rows[tüm].Cells[3].Value.ToString();
+                //tbTarih.Text = grdOgrenci.Rows[tüm].Cells[4].Value.ToString();
+                //tbTelefonu.Text = grdOgrenci.Rows[tüm].Cells[5].Value.ToString();
+                //tbGsm.Text = grdOgrenci.Rows[tüm].Cells[6].Value.ToString();
+                //tbFaks.Text = grdOgrenci.Rows[tüm].Cells[7].Value.ToString();                
+                //tbAdresi.Text = grdOgrenci.Rows[tüm].Cells[9].Value.ToString();
+                //tbSirketAdi.Text = grdOgrenci.Rows[tüm].Cells[10].Value.ToString();
+                //tbWebSitesi.Text = grdOgrenci.Rows[tüm].Cells[11].Value.ToString();
+
             }
         }
 
@@ -170,7 +262,8 @@ namespace kartApp
                 tbAdresi.Text = tbAdresi.Text.Trim();
                 tbSirketAdi.Text = tbSirketAdi.Text.Trim();
                 tbWebSitesi.Text = tbWebSitesi.Text.Trim();
-                lblgosterge.Text = "";
+                tbGsm.Text = tbGsm.Text.Trim();
+                
 
                 string ad = Convert.ToString(tbAdi.Text);
                 string soyad = Convert.ToString(tbSoyadi.Text);
@@ -182,10 +275,11 @@ namespace kartApp
                 string adres = Convert.ToString(tbAdresi.Text);
                 string sirket = Convert.ToString(tbSirketAdi.Text);
                 string web = Convert.ToString(tbWebSitesi.Text);
+                string gsm = Convert.ToString(tbGsm.Text);
 
-                grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriGuncelle(ad, soyad, unvan, tarih, tel, fax, mail, adres, sirket, web, satir));
+                grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriGuncelle(ad, soyad, unvan, tarih, tel, gsm, fax, mail, adres, sirket, web, satir));
                 grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriGetir());
-                grdOgrenci.Sort(grdOgrenci.Columns["Kimlik"], ListSortDirection.Ascending);
+                grdOgrenci.Sort(grdOgrenci.Columns["ID"], ListSortDirection.Ascending);
             }
         }
 
@@ -200,25 +294,36 @@ namespace kartApp
 
    
         int tüm;
-        private int zaten(string telefon)
+        private int zaten(string ad, string soyad)
         {
             int sayi = grdOgrenci.Rows.Count;
             int sonuc=0;
 
+            
+
             for (int i = 0; i < sayi-1; i++)
             {
-                string deger = grdOgrenci.Rows[i].Cells[5].Value.ToString();
-                bool esitMiTel = deger.Equals(telefon, StringComparison.OrdinalIgnoreCase);
 
-                if (esitMiTel == true)
+                string adX = grdOgrenci.Rows[i].Cells[1].Value.ToString();
+                bool esitMiAd = adX.Equals(ad, StringComparison.OrdinalIgnoreCase);
+
+                string soyadX = grdOgrenci.Rows[i].Cells[2].Value.ToString();
+                bool esitMiSoyad = soyadX.Equals(soyad, StringComparison.OrdinalIgnoreCase);
+
+                
+
+                if ((esitMiAd && esitMiSoyad) == true)
                 {
                     sonuc = 1;
                     tüm = i;
                     break;
                 }
                 else
-                { }
+                {
+                    continue;
+                }
             }
+            
 
         return sonuc;   
         }
@@ -253,20 +358,185 @@ namespace kartApp
             lblTelefonu.BackColor = Color.Transparent;
             lblUnvani.BackColor = Color.Transparent;
             lblWebSitesi.BackColor = Color.Transparent;
-            lblTarih.BackColor = Color.Transparent;
-            lblgosterge.BackColor = Color.Transparent;
+            lblTarih.BackColor = Color.Transparent;            
+            lblGsm.BackColor = Color.Transparent;
+            lblArama.BackColor = Color.Transparent;
+
+            
 
         }
 
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //this.FormBorderStyle = FormBorderStyle.None;
+            this.WindowState = FormWindowState.Maximized;
         }
 
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             (grdOgrenci.DataSource as DataTable).DefaultView.RowFilter = string.Format("Ad like '%" + tbArama.Text + "%' OR Soyad like '%" + tbArama.Text + "%' OR Tarih like '%" + tbArama.Text + "%' OR SirketAd like '%" + tbArama.Text + "%'");
+        }
+
+        private void checkAd_CheckedChanged(object sender, EventArgs e)
+        {
+            if (grdOgrenciRapor.Columns[1].Visible == false)
+            {
+                grdOgrenciRapor.Columns[1].Visible = true;
+            }
+            else if (grdOgrenciRapor.Columns[1].Visible == true)
+            {
+                grdOgrenciRapor.Columns[1].Visible = false;
+            }
+        }
+
+        private void checkSoyad_CheckedChanged(object sender, EventArgs e)
+        {
+            if (grdOgrenciRapor.Columns[2].Visible == false)
+            {
+                grdOgrenciRapor.Columns[2].Visible = true;
+            }
+            else if (grdOgrenciRapor.Columns[2].Visible == true)
+            {
+                grdOgrenciRapor.Columns[2].Visible = false;
+            }
+        }
+
+        private void checkUnvan_CheckedChanged(object sender, EventArgs e)
+        {
+            if (grdOgrenciRapor.Columns[3].Visible == false)
+            {
+                grdOgrenciRapor.Columns[3].Visible = true;
+            }
+            else if (grdOgrenciRapor.Columns[3].Visible == true)
+            {
+                grdOgrenciRapor.Columns[3].Visible = false;
+            }
+        }
+
+        private void checkTarih_CheckedChanged(object sender, EventArgs e)
+        {
+            if (grdOgrenciRapor.Columns[4].Visible == false)
+            {
+                grdOgrenciRapor.Columns[4].Visible = true;
+            }
+            else if (grdOgrenciRapor.Columns[4].Visible == true)
+            {
+                grdOgrenciRapor.Columns[4].Visible = false;
+            }
+        }
+
+        private void checkTelefon_CheckedChanged(object sender, EventArgs e)
+        {
+            if (grdOgrenciRapor.Columns[5].Visible == false)
+            {
+                grdOgrenciRapor.Columns[5].Visible = true;
+            }
+            else if (grdOgrenciRapor.Columns[5].Visible == true)
+            {
+                grdOgrenciRapor.Columns[5].Visible = false;
+            }
+        }
+
+        private void checkGsm_CheckedChanged(object sender, EventArgs e)
+        {
+            if (grdOgrenciRapor.Columns[6].Visible == false)
+            {
+                grdOgrenciRapor.Columns[6].Visible = true;
+            }
+            else if (grdOgrenciRapor.Columns[6].Visible == true)
+            {
+                grdOgrenciRapor.Columns[6].Visible = false;
+            }
+        }
+
+        private void checkFaks_CheckedChanged(object sender, EventArgs e)
+        {
+            if (grdOgrenciRapor.Columns[7].Visible == false)
+            {
+                grdOgrenciRapor.Columns[7].Visible = true;
+            }
+            else if (grdOgrenciRapor.Columns[7].Visible == true)
+            {
+                grdOgrenciRapor.Columns[7].Visible = false;
+            }
+        }
+
+        private void checkMail_CheckedChanged(object sender, EventArgs e)
+        {
+            if (grdOgrenciRapor.Columns[8].Visible == false)
+            {
+                grdOgrenciRapor.Columns[8].Visible = true;
+            }
+            else if (grdOgrenciRapor.Columns[8].Visible == true)
+            {
+                grdOgrenciRapor.Columns[8].Visible = false;
+            }
+        }
+
+        private void checkAdres_CheckedChanged(object sender, EventArgs e)
+        {
+            if (grdOgrenciRapor.Columns[9].Visible == false)
+            {
+                grdOgrenciRapor.Columns[9].Visible = true;
+            }
+            else if (grdOgrenciRapor.Columns[9].Visible == true)
+            {
+                grdOgrenciRapor.Columns[9].Visible = false;
+            }
+        }
+
+        private void checkSirket_CheckedChanged(object sender, EventArgs e)
+        {
+            if (grdOgrenciRapor.Columns[10].Visible == false)
+            {
+                grdOgrenciRapor.Columns[10].Visible = true;
+            }
+            else if (grdOgrenciRapor.Columns[10].Visible == true)
+            {
+                grdOgrenciRapor.Columns[10].Visible = false;
+            }
+        }
+
+        private void checkWeb_CheckedChanged(object sender, EventArgs e)
+        {
+            if (grdOgrenciRapor.Columns[11].Visible == false)
+            {
+                grdOgrenciRapor.Columns[11].Visible = true;
+            }
+            else if (grdOgrenciRapor.Columns[11].Visible == true)
+            {
+                grdOgrenciRapor.Columns[11].Visible = false;
+            }
+        }
+
+        private void checkID_CheckedChanged(object sender, EventArgs e)
+        {
+            if (grdOgrenciRapor.Columns[0].Visible == false)
+            {
+                grdOgrenciRapor.Columns[0].Visible = true;
+            }
+            else if (grdOgrenciRapor.Columns[0].Visible == true)
+            {
+                grdOgrenciRapor.Columns[0].Visible = false;
+            }
+        }
+
+        private void checkGenis_CheckedChanged(object sender, EventArgs e)
+        {
+            if (grdOgrenci.AutoSizeColumnsMode == DataGridViewAutoSizeColumnsMode.Fill)
+            {
+                grdOgrenci.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            }
+            else if (grdOgrenci.AutoSizeColumnsMode == DataGridViewAutoSizeColumnsMode.DisplayedCells)
+            {
+                grdOgrenci.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            }
+
+
+
+
         }
     }
 }
