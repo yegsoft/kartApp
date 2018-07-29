@@ -4,9 +4,12 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
+using Word = Microsoft.Office.Interop.Word;
 
 namespace kartApp
 {
@@ -19,6 +22,18 @@ namespace kartApp
             grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriGetir());
             grdOgrenci.Sort(grdOgrenci.Columns["ID"], ListSortDirection.Ascending);
             grdOgrenciRapor.DataSource = Yardimci.Tablo(Yardimci.VeriGetir());
+
+            DataGridViewCheckBoxColumn checkColumn = new DataGridViewCheckBoxColumn();
+            checkColumn.Name = "X";
+            checkColumn.HeaderText = "X";
+            checkColumn.Width = 50;
+            checkColumn.ReadOnly = false;
+            checkColumn.FillWeight = 12;            
+            grdOgrenciRapor.Columns.Add(checkColumn);
+
+            
+
+            
 
 
 
@@ -381,18 +396,6 @@ namespace kartApp
 
         private void checkAd_CheckedChanged(object sender, EventArgs e)
         {
-            if (grdOgrenciRapor.Columns[1].Visible == false)
-            {
-                grdOgrenciRapor.Columns[1].Visible = true;
-            }
-            else if (grdOgrenciRapor.Columns[1].Visible == true)
-            {
-                grdOgrenciRapor.Columns[1].Visible = false;
-            }
-        }
-
-        private void checkSoyad_CheckedChanged(object sender, EventArgs e)
-        {
             if (grdOgrenciRapor.Columns[2].Visible == false)
             {
                 grdOgrenciRapor.Columns[2].Visible = true;
@@ -403,7 +406,7 @@ namespace kartApp
             }
         }
 
-        private void checkUnvan_CheckedChanged(object sender, EventArgs e)
+        private void checkSoyad_CheckedChanged(object sender, EventArgs e)
         {
             if (grdOgrenciRapor.Columns[3].Visible == false)
             {
@@ -415,7 +418,7 @@ namespace kartApp
             }
         }
 
-        private void checkTarih_CheckedChanged(object sender, EventArgs e)
+        private void checkUnvan_CheckedChanged(object sender, EventArgs e)
         {
             if (grdOgrenciRapor.Columns[4].Visible == false)
             {
@@ -427,7 +430,7 @@ namespace kartApp
             }
         }
 
-        private void checkTelefon_CheckedChanged(object sender, EventArgs e)
+        private void checkTarih_CheckedChanged(object sender, EventArgs e)
         {
             if (grdOgrenciRapor.Columns[5].Visible == false)
             {
@@ -439,7 +442,7 @@ namespace kartApp
             }
         }
 
-        private void checkGsm_CheckedChanged(object sender, EventArgs e)
+        private void checkTelefon_CheckedChanged(object sender, EventArgs e)
         {
             if (grdOgrenciRapor.Columns[6].Visible == false)
             {
@@ -451,7 +454,7 @@ namespace kartApp
             }
         }
 
-        private void checkFaks_CheckedChanged(object sender, EventArgs e)
+        private void checkGsm_CheckedChanged(object sender, EventArgs e)
         {
             if (grdOgrenciRapor.Columns[7].Visible == false)
             {
@@ -463,7 +466,7 @@ namespace kartApp
             }
         }
 
-        private void checkMail_CheckedChanged(object sender, EventArgs e)
+        private void checkFaks_CheckedChanged(object sender, EventArgs e)
         {
             if (grdOgrenciRapor.Columns[8].Visible == false)
             {
@@ -475,7 +478,7 @@ namespace kartApp
             }
         }
 
-        private void checkAdres_CheckedChanged(object sender, EventArgs e)
+        private void checkMail_CheckedChanged(object sender, EventArgs e)
         {
             if (grdOgrenciRapor.Columns[9].Visible == false)
             {
@@ -487,7 +490,7 @@ namespace kartApp
             }
         }
 
-        private void checkSirket_CheckedChanged(object sender, EventArgs e)
+        private void checkAdres_CheckedChanged(object sender, EventArgs e)
         {
             if (grdOgrenciRapor.Columns[10].Visible == false)
             {
@@ -499,7 +502,7 @@ namespace kartApp
             }
         }
 
-        private void checkWeb_CheckedChanged(object sender, EventArgs e)
+        private void checkSirket_CheckedChanged(object sender, EventArgs e)
         {
             if (grdOgrenciRapor.Columns[11].Visible == false)
             {
@@ -511,15 +514,27 @@ namespace kartApp
             }
         }
 
+        private void checkWeb_CheckedChanged(object sender, EventArgs e)
+        {
+            if (grdOgrenciRapor.Columns[12].Visible == false)
+            {
+                grdOgrenciRapor.Columns[12].Visible = true;
+            }
+            else if (grdOgrenciRapor.Columns[12].Visible == true)
+            {
+                grdOgrenciRapor.Columns[12].Visible = false;
+            }
+        }
+
         private void checkID_CheckedChanged(object sender, EventArgs e)
         {
-            if (grdOgrenciRapor.Columns[0].Visible == false)
+            if (grdOgrenciRapor.Columns[1].Visible == false)
             {
-                grdOgrenciRapor.Columns[0].Visible = true;
+                grdOgrenciRapor.Columns[1].Visible = true;
             }
-            else if (grdOgrenciRapor.Columns[0].Visible == true)
+            else if (grdOgrenciRapor.Columns[1].Visible == true)
             {
-                grdOgrenciRapor.Columns[0].Visible = false;
+                grdOgrenciRapor.Columns[1].Visible = false;
             }
         }
 
@@ -538,6 +553,66 @@ namespace kartApp
 
 
         }
+
+        
+
+        private void btnCikti_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in grdOgrenciRapor.Rows)
+            {
+                if (row.Cells[0].Value != null && row.Cells[0].Value.Equals(true))
+                {
+                    row.Selected = true;
+                    row.DefaultCellStyle.SelectionBackColor = Color.LightSlateGray;
+                }
+                else
+                    row.Selected = false;
+            }
+
+            for (int i = 0; i < (grdOgrenciRapor.Rows.Count)-1; i++)
+            {
+                DataGridViewBand band = grdOgrenciRapor.Rows[i];                
+                if (band.Selected == false)
+                {
+                    band.Visible = false;
+                }
+                else
+                {
+                    continue;
+                }
+
+            }
+
+            grdOgrenciRapor.Columns[0].Visible = false;
+
+            copyAlltoClipboard();
+            Microsoft.Office.Interop.Excel.Application xlexcel;
+            Microsoft.Office.Interop.Excel.Workbook xlWorkBook;
+            Microsoft.Office.Interop.Excel.Worksheet xlWorkSheet;
+            object misValue = System.Reflection.Missing.Value;
+            xlexcel = new Excel.Application();
+            xlexcel.Visible = true;
+            xlWorkBook = xlexcel.Workbooks.Add(misValue);
+            xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+            Excel.Range CR = (Excel.Range)xlWorkSheet.Cells[1, 1];
+            CR.Select();
+            xlWorkSheet.PasteSpecial(CR, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true);
+            grdOgrenciRapor.Columns[0].Visible = true;
+            grdOgrenciRapor.DataSource = Yardimci.Tablo(Yardimci.VeriGetir());
+        }
+
+        private void copyAlltoClipboard()
+        {
+            grdOgrenciRapor.SelectAll();
+            
+            DataObject dataObj = grdOgrenciRapor.GetClipboardContent();
+            if (dataObj != null)
+                Clipboard.SetDataObject(dataObj);
+        }
+
+        
+
+
     }
 }
 

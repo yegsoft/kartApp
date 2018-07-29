@@ -30,12 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblAdi = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -70,10 +70,13 @@
             this.tbGsm = new System.Windows.Forms.MaskedTextBox();
             this.menuSecim = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.checkGenis = new System.Windows.Forms.CheckBox();
+            this.btnKaliciSil = new System.Windows.Forms.Button();
             this.cmbKategori = new System.Windows.Forms.ComboBox();
             this.lblArama = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.lblSeciniz = new System.Windows.Forms.Label();
             this.checkID = new System.Windows.Forms.CheckBox();
             this.grdOgrenciRapor = new System.Windows.Forms.DataGridView();
             this.checkFaks = new System.Windows.Forms.CheckBox();
@@ -87,9 +90,7 @@
             this.checkUnvan = new System.Windows.Forms.CheckBox();
             this.checkSoyad = new System.Windows.Forms.CheckBox();
             this.checkAd = new System.Windows.Forms.CheckBox();
-            this.btnKaliciSil = new System.Windows.Forms.Button();
-            this.lblSeciniz = new System.Windows.Forms.Label();
-            this.checkGenis = new System.Windows.Forms.CheckBox();
+            this.btnCikti = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdOgrenci)).BeginInit();
             this.menuSecim.SuspendLayout();
@@ -166,7 +167,7 @@
             this.tbAdi.Mask = "?????????????????????????????????????????????????????????????";
             this.tbAdi.MinimumSize = new System.Drawing.Size(166, 44);
             this.tbAdi.Name = "tbAdi";
-            this.tbAdi.Size = new System.Drawing.Size(477, 44);
+            this.tbAdi.Size = new System.Drawing.Size(477, 38);
             this.tbAdi.TabIndex = 19;
             this.tbAdi.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -179,7 +180,7 @@
             this.tbSoyadi.Mask = "??????????????????????????????????????????????????????";
             this.tbSoyadi.MinimumSize = new System.Drawing.Size(166, 44);
             this.tbSoyadi.Name = "tbSoyadi";
-            this.tbSoyadi.Size = new System.Drawing.Size(477, 44);
+            this.tbSoyadi.Size = new System.Drawing.Size(477, 38);
             this.tbSoyadi.TabIndex = 20;
             this.tbSoyadi.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -192,7 +193,7 @@
             this.tbUnvani.Mask = "?????????????????????????????????????????????????????????";
             this.tbUnvani.MinimumSize = new System.Drawing.Size(166, 44);
             this.tbUnvani.Name = "tbUnvani";
-            this.tbUnvani.Size = new System.Drawing.Size(477, 44);
+            this.tbUnvani.Size = new System.Drawing.Size(477, 38);
             this.tbUnvani.TabIndex = 21;
             this.tbUnvani.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -205,7 +206,7 @@
             this.tbTelefonu.Mask = "(0000) 000-0000";
             this.tbTelefonu.MinimumSize = new System.Drawing.Size(166, 44);
             this.tbTelefonu.Name = "tbTelefonu";
-            this.tbTelefonu.Size = new System.Drawing.Size(477, 44);
+            this.tbTelefonu.Size = new System.Drawing.Size(477, 38);
             this.tbTelefonu.TabIndex = 22;
             this.tbTelefonu.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -218,7 +219,7 @@
             this.tbMail.Mask = "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC";
             this.tbMail.MinimumSize = new System.Drawing.Size(166, 44);
             this.tbMail.Name = "tbMail";
-            this.tbMail.Size = new System.Drawing.Size(477, 44);
+            this.tbMail.Size = new System.Drawing.Size(477, 38);
             this.tbMail.TabIndex = 23;
             this.tbMail.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbMail.ValidatingType = typeof(System.DateTime);
@@ -232,7 +233,7 @@
             this.tbFaks.Mask = "0000000000000000000000";
             this.tbFaks.MinimumSize = new System.Drawing.Size(166, 44);
             this.tbFaks.Name = "tbFaks";
-            this.tbFaks.Size = new System.Drawing.Size(477, 44);
+            this.tbFaks.Size = new System.Drawing.Size(477, 38);
             this.tbFaks.TabIndex = 25;
             this.tbFaks.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbFaks.ValidatingType = typeof(int);
@@ -258,7 +259,7 @@
             this.tbWebSitesi.Mask = "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC";
             this.tbWebSitesi.MinimumSize = new System.Drawing.Size(166, 44);
             this.tbWebSitesi.Name = "tbWebSitesi";
-            this.tbWebSitesi.Size = new System.Drawing.Size(477, 44);
+            this.tbWebSitesi.Size = new System.Drawing.Size(477, 38);
             this.tbWebSitesi.TabIndex = 26;
             this.tbWebSitesi.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -284,7 +285,7 @@
     "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC";
             this.tbAdresi.MinimumSize = new System.Drawing.Size(166, 44);
             this.tbAdresi.Name = "tbAdresi";
-            this.tbAdresi.Size = new System.Drawing.Size(477, 44);
+            this.tbAdresi.Size = new System.Drawing.Size(477, 38);
             this.tbAdresi.TabIndex = 27;
             this.tbAdresi.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -309,7 +310,7 @@
             this.tbSirketAdi.Mask = "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC";
             this.tbSirketAdi.MinimumSize = new System.Drawing.Size(166, 44);
             this.tbSirketAdi.Name = "tbSirketAdi";
-            this.tbSirketAdi.Size = new System.Drawing.Size(477, 44);
+            this.tbSirketAdi.Size = new System.Drawing.Size(477, 38);
             this.tbSirketAdi.TabIndex = 28;
             this.tbSirketAdi.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -365,34 +366,34 @@
             // 
             this.grdOgrenci.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grdOgrenci.BackgroundColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.Khaki;
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdOgrenci.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Khaki;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdOgrenci.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.grdOgrenci.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.Khaki;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdOgrenci.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Khaki;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdOgrenci.DefaultCellStyle = dataGridViewCellStyle2;
             this.grdOgrenci.Location = new System.Drawing.Point(707, 79);
             this.grdOgrenci.Name = "grdOgrenci";
             this.grdOgrenci.ReadOnly = true;
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.Khaki;
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdOgrenci.RowHeadersDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Khaki;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdOgrenci.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.grdOgrenci.Size = new System.Drawing.Size(1108, 772);
             this.grdOgrenci.TabIndex = 40;
             this.grdOgrenci.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdOgrenci_CellClick_1);
@@ -503,7 +504,7 @@
             this.tbGsm.Mask = "(0000) 000-0000";
             this.tbGsm.MinimumSize = new System.Drawing.Size(166, 44);
             this.tbGsm.Name = "tbGsm";
-            this.tbGsm.Size = new System.Drawing.Size(477, 44);
+            this.tbGsm.Size = new System.Drawing.Size(477, 38);
             this.tbGsm.TabIndex = 30;
             this.tbGsm.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -568,6 +569,29 @@
             this.tabPage1.Text = "Ana Menü";
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
+            // checkGenis
+            // 
+            this.checkGenis.AutoSize = true;
+            this.checkGenis.Location = new System.Drawing.Point(1663, 857);
+            this.checkGenis.Name = "checkGenis";
+            this.checkGenis.Size = new System.Drawing.Size(131, 32);
+            this.checkGenis.TabIndex = 53;
+            this.checkGenis.Text = "Geniş Göster";
+            this.checkGenis.UseVisualStyleBackColor = true;
+            this.checkGenis.CheckedChanged += new System.EventHandler(this.checkGenis_CheckedChanged);
+            // 
+            // btnKaliciSil
+            // 
+            this.btnKaliciSil.BackColor = System.Drawing.Color.Khaki;
+            this.btnKaliciSil.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnKaliciSil.Location = new System.Drawing.Point(1597, 24);
+            this.btnKaliciSil.Name = "btnKaliciSil";
+            this.btnKaliciSil.Size = new System.Drawing.Size(218, 44);
+            this.btnKaliciSil.TabIndex = 52;
+            this.btnKaliciSil.Text = "SİL (dikkatli olun)";
+            this.btnKaliciSil.UseVisualStyleBackColor = false;
+            this.btnKaliciSil.Click += new System.EventHandler(this.btnKaliciSil_Click);
+            // 
             // cmbKategori
             // 
             this.cmbKategori.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
@@ -603,6 +627,7 @@
             // 
             this.tabPage3.AutoScroll = true;
             this.tabPage3.BackColor = System.Drawing.SystemColors.Info;
+            this.tabPage3.Controls.Add(this.btnCikti);
             this.tabPage3.Controls.Add(this.lblSeciniz);
             this.tabPage3.Controls.Add(this.checkID);
             this.tabPage3.Controls.Add(this.grdOgrenciRapor);
@@ -624,6 +649,16 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Rapor";
             // 
+            // lblSeciniz
+            // 
+            this.lblSeciniz.Font = new System.Drawing.Font("Segoe Print", 28F, System.Drawing.FontStyle.Bold);
+            this.lblSeciniz.Location = new System.Drawing.Point(17, 72);
+            this.lblSeciniz.Name = "lblSeciniz";
+            this.lblSeciniz.Size = new System.Drawing.Size(319, 154);
+            this.lblSeciniz.TabIndex = 13;
+            this.lblSeciniz.Text = "Gösterilecek bilgileri seçiniz";
+            this.lblSeciniz.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // checkID
             // 
             this.checkID.AutoSize = true;
@@ -642,33 +677,33 @@
             // 
             this.grdOgrenciRapor.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grdOgrenciRapor.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.Color.Khaki;
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdOgrenciRapor.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Khaki;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdOgrenciRapor.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.grdOgrenciRapor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.Khaki;
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdOgrenciRapor.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Khaki;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdOgrenciRapor.DefaultCellStyle = dataGridViewCellStyle5;
             this.grdOgrenciRapor.Location = new System.Drawing.Point(356, 48);
             this.grdOgrenciRapor.Name = "grdOgrenciRapor";
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.Khaki;
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdOgrenciRapor.RowHeadersDefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Khaki;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdOgrenciRapor.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.grdOgrenciRapor.Size = new System.Drawing.Size(1461, 784);
             this.grdOgrenciRapor.TabIndex = 11;
             // 
@@ -804,38 +839,17 @@
             this.checkAd.UseVisualStyleBackColor = true;
             this.checkAd.CheckedChanged += new System.EventHandler(this.checkAd_CheckedChanged);
             // 
-            // btnKaliciSil
+            // btnCikti
             // 
-            this.btnKaliciSil.BackColor = System.Drawing.Color.Khaki;
-            this.btnKaliciSil.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btnKaliciSil.Location = new System.Drawing.Point(1597, 24);
-            this.btnKaliciSil.Name = "btnKaliciSil";
-            this.btnKaliciSil.Size = new System.Drawing.Size(218, 44);
-            this.btnKaliciSil.TabIndex = 52;
-            this.btnKaliciSil.Text = "SİL (dikkatli olun)";
-            this.btnKaliciSil.UseVisualStyleBackColor = false;
-            this.btnKaliciSil.Click += new System.EventHandler(this.btnKaliciSil_Click);
-            // 
-            // lblSeciniz
-            // 
-            this.lblSeciniz.Font = new System.Drawing.Font("Segoe Print", 28F, System.Drawing.FontStyle.Bold);
-            this.lblSeciniz.Location = new System.Drawing.Point(17, 72);
-            this.lblSeciniz.Name = "lblSeciniz";
-            this.lblSeciniz.Size = new System.Drawing.Size(319, 154);
-            this.lblSeciniz.TabIndex = 13;
-            this.lblSeciniz.Text = "Gösterilecek bilgileri seçiniz";
-            this.lblSeciniz.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // checkGenis
-            // 
-            this.checkGenis.AutoSize = true;
-            this.checkGenis.Location = new System.Drawing.Point(1663, 857);
-            this.checkGenis.Name = "checkGenis";
-            this.checkGenis.Size = new System.Drawing.Size(131, 32);
-            this.checkGenis.TabIndex = 53;
-            this.checkGenis.Text = "Geniş Göster";
-            this.checkGenis.UseVisualStyleBackColor = true;
-            this.checkGenis.CheckedChanged += new System.EventHandler(this.checkGenis_CheckedChanged);
+            this.btnCikti.BackColor = System.Drawing.Color.Khaki;
+            this.btnCikti.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnCikti.Location = new System.Drawing.Point(81, 293);
+            this.btnCikti.Name = "btnCikti";
+            this.btnCikti.Size = new System.Drawing.Size(227, 45);
+            this.btnCikti.TabIndex = 32;
+            this.btnCikti.Text = "ÇIKTI AL";
+            this.btnCikti.UseVisualStyleBackColor = false;
+            this.btnCikti.Click += new System.EventHandler(this.btnCikti_Click);
             // 
             // Form1
             // 
@@ -915,6 +929,7 @@
         private System.Windows.Forms.Button btnKaliciSil;
         private System.Windows.Forms.Label lblSeciniz;
         private System.Windows.Forms.CheckBox checkGenis;
+        private System.Windows.Forms.Button btnCikti;
     }
 }
 
