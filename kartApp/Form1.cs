@@ -50,8 +50,10 @@ namespace kartApp
 
         string satir;
         private void grdOgrenci_CellClick_1(object sender, DataGridViewCellEventArgs e)
-        {
+        {   
+            
             satir = grdOgrenci.CurrentRow.Cells[0].Value.ToString();
+
             if (btnIslem2.Text == "PASİFLER")
             {
                 btnIslem.Text = "GÜNCELLE";
@@ -60,6 +62,20 @@ namespace kartApp
             {
                 btnIslem.Text = "GERİ AL";
             }
+
+            tbAdi.Text = grdOgrenci.CurrentRow.Cells[1].Value.ToString();
+            tbSoyadi.Text = grdOgrenci.CurrentRow.Cells[2].Value.ToString();
+            tbUnvani.Text = grdOgrenci.CurrentRow.Cells[3].Value.ToString();
+            tbTarih.Text = grdOgrenci.CurrentRow.Cells[4].Value.ToString();
+            tbTelefonu.Text = grdOgrenci.CurrentRow.Cells[5].Value.ToString();
+            tbGsm.Text = grdOgrenci.CurrentRow.Cells[6].Value.ToString();
+            tbFaks.Text = grdOgrenci.CurrentRow.Cells[7].Value.ToString();
+            tbAdresi.Text = grdOgrenci.CurrentRow.Cells[9].Value.ToString();
+            tbSirketAdi.Text = grdOgrenci.CurrentRow.Cells[10].Value.ToString();
+            tbWebSitesi.Text = grdOgrenci.CurrentRow.Cells[11].Value.ToString();
+
+
+
         }
 
 
@@ -82,7 +98,12 @@ namespace kartApp
             }
             else if (btnIslem.Text == "GÜNCELLE")
             {
-                guncelle();
+                DialogResult dialogresult = MessageBox.Show("Emin misiniz?", "GÜNCELLE", MessageBoxButtons.YesNo);                
+                if (dialogresult == DialogResult.Yes)
+                {
+                    guncelle();
+                }
+                
             }
             else if (btnIslem.Text == "GERİ AL")
             {
@@ -110,6 +131,8 @@ namespace kartApp
 
         private void btnSil_Click(object sender, EventArgs e)
         {
+            
+
             if (satir != null)
             {
                 grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriSil(satir));
@@ -123,11 +146,15 @@ namespace kartApp
 
         private void btnKaliciSil_Click(object sender, EventArgs e)
         {
+            DialogResult dialogresult = MessageBox.Show("Emin misiniz?", "SİL", MessageBoxButtons.YesNo);
+            if (dialogresult==DialogResult.Yes)
+            {
             grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.KaliciSil(satir));
             grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriGetir());
             grdOgrenci.Sort(grdOgrenci.Columns["ID"], ListSortDirection.Ascending);
             lblKayitBasarili.Text = "SİLİNDİ";
             time();
+            }
 
         }
 
@@ -376,6 +403,7 @@ namespace kartApp
             lblTarih.BackColor = Color.Transparent;            
             lblGsm.BackColor = Color.Transparent;
             lblArama.BackColor = Color.Transparent;
+            lblAramaRapor.BackColor = Color.Transparent;
 
             
 
@@ -391,7 +419,19 @@ namespace kartApp
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
+            
+        }
+
+        private void tbArama_TextChanged(object sender, EventArgs e)
+        {
             (grdOgrenci.DataSource as DataTable).DefaultView.RowFilter = string.Format("Ad like '%" + tbArama.Text + "%' OR Soyad like '%" + tbArama.Text + "%' OR Tarih like '%" + tbArama.Text + "%' OR SirketAd like '%" + tbArama.Text + "%'");
+
+        }
+
+        private void tbAramaRapor_TextChanged(object sender, EventArgs e)
+        {
+            (grdOgrenciRapor.DataSource as DataTable).DefaultView.RowFilter = string.Format("Ad like '%" + tbAramaRapor.Text + "%' OR Soyad like '%" + tbAramaRapor.Text + "%' OR Tarih like '%" + tbAramaRapor.Text + "%' OR SirketAd like '%" + tbAramaRapor.Text + "%'");
+
         }
 
         private void checkAd_CheckedChanged(object sender, EventArgs e)
@@ -558,47 +598,59 @@ namespace kartApp
 
         private void btnCikti_Click(object sender, EventArgs e)
         {
+            int kontrol = 0;
             foreach (DataGridViewRow row in grdOgrenciRapor.Rows)
             {
                 if (row.Cells[0].Value != null && row.Cells[0].Value.Equals(true))
                 {
                     row.Selected = true;
                     row.DefaultCellStyle.SelectionBackColor = Color.LightSlateGray;
+                    kontrol = 1;
                 }
                 else
                     row.Selected = false;
             }
 
-            for (int i = 0; i < (grdOgrenciRapor.Rows.Count)-1; i++)
+            if (kontrol == 0)
             {
-                DataGridViewBand band = grdOgrenciRapor.Rows[i];                
-                if (band.Selected == false)
+                DialogResult dialogresult = MessageBox.Show("Lütfen en az bir satır seçiniz.", "Hiçbir satır seçilmedi.", MessageBoxButtons.OK);
+            }
+            else
+            {
+                for (int i = 0; i < (grdOgrenciRapor.Rows.Count) - 1; i++)
                 {
-                    band.Visible = false;
+                    DataGridViewBand band = grdOgrenciRapor.Rows[i];
+                    if (band.Selected == false)
+                    {
+                        band.Visible = false;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+
                 }
-                else
-                {
-                    continue;
-                }
+
+                grdOgrenciRapor.Columns[0].Visible = false;
+
+                copyAlltoClipboard();
+                Microsoft.Office.Interop.Excel.Application xlexcel;
+                Microsoft.Office.Interop.Excel.Workbook xlWorkBook;
+                Microsoft.Office.Interop.Excel.Worksheet xlWorkSheet;
+                object misValue = System.Reflection.Missing.Value;
+                xlexcel = new Excel.Application();
+                xlexcel.Visible = true;
+                xlWorkBook = xlexcel.Workbooks.Add(misValue);
+                xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+                Excel.Range CR = (Excel.Range)xlWorkSheet.Cells[1, 1];
+                CR.Select();
+                xlWorkSheet.PasteSpecial(CR, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true);
+                grdOgrenciRapor.Columns[0].Visible = true;
+                grdOgrenciRapor.DataSource = Yardimci.Tablo(Yardimci.VeriGetir());
 
             }
 
-            grdOgrenciRapor.Columns[0].Visible = false;
-
-            copyAlltoClipboard();
-            Microsoft.Office.Interop.Excel.Application xlexcel;
-            Microsoft.Office.Interop.Excel.Workbook xlWorkBook;
-            Microsoft.Office.Interop.Excel.Worksheet xlWorkSheet;
-            object misValue = System.Reflection.Missing.Value;
-            xlexcel = new Excel.Application();
-            xlexcel.Visible = true;
-            xlWorkBook = xlexcel.Workbooks.Add(misValue);
-            xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
-            Excel.Range CR = (Excel.Range)xlWorkSheet.Cells[1, 1];
-            CR.Select();
-            xlWorkSheet.PasteSpecial(CR, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true);
-            grdOgrenciRapor.Columns[0].Visible = true;
-            grdOgrenciRapor.DataSource = Yardimci.Tablo(Yardimci.VeriGetir());
+            
         }
 
         private void copyAlltoClipboard()
@@ -611,8 +663,6 @@ namespace kartApp
         }
 
         
-
-
     }
 }
 

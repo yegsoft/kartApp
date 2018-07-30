@@ -76,6 +76,9 @@
             this.lblArama = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.lblAramaRapor = new System.Windows.Forms.Label();
+            this.tbAramaRapor = new System.Windows.Forms.TextBox();
+            this.btnCikti = new System.Windows.Forms.Button();
             this.lblSeciniz = new System.Windows.Forms.Label();
             this.checkID = new System.Windows.Forms.CheckBox();
             this.grdOgrenciRapor = new System.Windows.Forms.DataGridView();
@@ -90,7 +93,6 @@
             this.checkUnvan = new System.Windows.Forms.CheckBox();
             this.checkSoyad = new System.Windows.Forms.CheckBox();
             this.checkAd = new System.Windows.Forms.CheckBox();
-            this.btnCikti = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdOgrenci)).BeginInit();
             this.menuSecim.SuspendLayout();
@@ -481,7 +483,7 @@
             this.tbArama.Size = new System.Drawing.Size(316, 45);
             this.tbArama.TabIndex = 34;
             this.tbArama.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbArama.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.tbArama.TextChanged += new System.EventHandler(this.tbArama_TextChanged);
             // 
             // lblGsm
             // 
@@ -627,6 +629,8 @@
             // 
             this.tabPage3.AutoScroll = true;
             this.tabPage3.BackColor = System.Drawing.SystemColors.Info;
+            this.tabPage3.Controls.Add(this.lblAramaRapor);
+            this.tabPage3.Controls.Add(this.tbAramaRapor);
             this.tabPage3.Controls.Add(this.btnCikti);
             this.tabPage3.Controls.Add(this.lblSeciniz);
             this.tabPage3.Controls.Add(this.checkID);
@@ -649,12 +653,49 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Rapor";
             // 
+            // lblAramaRapor
+            // 
+            this.lblAramaRapor.BackColor = System.Drawing.Color.Firebrick;
+            this.lblAramaRapor.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblAramaRapor.ForeColor = System.Drawing.Color.Black;
+            this.lblAramaRapor.Location = new System.Drawing.Point(280, 38);
+            this.lblAramaRapor.Name = "lblAramaRapor";
+            this.lblAramaRapor.Size = new System.Drawing.Size(740, 45);
+            this.lblAramaRapor.TabIndex = 52;
+            this.lblAramaRapor.Text = "AD, SOYAD, TARİH VEYA ŞİRKET ADINA GÖRE ARAMA";
+            this.lblAramaRapor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tbAramaRapor
+            // 
+            this.tbAramaRapor.BackColor = System.Drawing.Color.Khaki;
+            this.tbAramaRapor.Font = new System.Drawing.Font("Segoe Print", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbAramaRapor.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.tbAramaRapor.Location = new System.Drawing.Point(1026, 38);
+            this.tbAramaRapor.Multiline = true;
+            this.tbAramaRapor.Name = "tbAramaRapor";
+            this.tbAramaRapor.Size = new System.Drawing.Size(791, 45);
+            this.tbAramaRapor.TabIndex = 51;
+            this.tbAramaRapor.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbAramaRapor.TextChanged += new System.EventHandler(this.tbAramaRapor_TextChanged);
+            // 
+            // btnCikti
+            // 
+            this.btnCikti.BackColor = System.Drawing.Color.Khaki;
+            this.btnCikti.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnCikti.Location = new System.Drawing.Point(29, 774);
+            this.btnCikti.Name = "btnCikti";
+            this.btnCikti.Size = new System.Drawing.Size(227, 45);
+            this.btnCikti.TabIndex = 32;
+            this.btnCikti.Text = "EXCEL\'E AKTAR";
+            this.btnCikti.UseVisualStyleBackColor = false;
+            this.btnCikti.Click += new System.EventHandler(this.btnCikti_Click);
+            // 
             // lblSeciniz
             // 
-            this.lblSeciniz.Font = new System.Drawing.Font("Segoe Print", 28F, System.Drawing.FontStyle.Bold);
-            this.lblSeciniz.Location = new System.Drawing.Point(17, 72);
+            this.lblSeciniz.Font = new System.Drawing.Font("Segoe Print", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblSeciniz.Location = new System.Drawing.Point(21, 67);
             this.lblSeciniz.Name = "lblSeciniz";
-            this.lblSeciniz.Size = new System.Drawing.Size(319, 154);
+            this.lblSeciniz.Size = new System.Drawing.Size(253, 152);
             this.lblSeciniz.TabIndex = 13;
             this.lblSeciniz.Text = "Gösterilecek bilgileri seçiniz";
             this.lblSeciniz.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -664,19 +705,21 @@
             this.checkID.AutoSize = true;
             this.checkID.Checked = true;
             this.checkID.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkID.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkID.Location = new System.Drawing.Point(129, 621);
+            this.checkID.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.checkID.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.checkID.Location = new System.Drawing.Point(29, 710);
             this.checkID.Name = "checkID";
-            this.checkID.Size = new System.Drawing.Size(113, 37);
+            this.checkID.Size = new System.Drawing.Size(136, 46);
             this.checkID.TabIndex = 12;
             this.checkID.Text = "Numara";
+            this.checkID.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.checkID.UseVisualStyleBackColor = true;
             this.checkID.CheckedChanged += new System.EventHandler(this.checkID_CheckedChanged);
             // 
             // grdOgrenciRapor
             // 
             this.grdOgrenciRapor.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.grdOgrenciRapor.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.grdOgrenciRapor.BackgroundColor = System.Drawing.SystemColors.Info;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
@@ -694,7 +737,7 @@
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.grdOgrenciRapor.DefaultCellStyle = dataGridViewCellStyle5;
-            this.grdOgrenciRapor.Location = new System.Drawing.Point(356, 48);
+            this.grdOgrenciRapor.Location = new System.Drawing.Point(280, 102);
             this.grdOgrenciRapor.Name = "grdOgrenciRapor";
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
@@ -704,152 +747,162 @@
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.grdOgrenciRapor.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            this.grdOgrenciRapor.Size = new System.Drawing.Size(1461, 784);
+            this.grdOgrenciRapor.Size = new System.Drawing.Size(1537, 730);
             this.grdOgrenciRapor.TabIndex = 11;
             // 
             // checkFaks
             // 
             this.checkFaks.AutoSize = true;
-            this.checkFaks.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkFaks.Location = new System.Drawing.Point(181, 578);
+            this.checkFaks.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.checkFaks.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.checkFaks.Location = new System.Drawing.Point(29, 437);
             this.checkFaks.Name = "checkFaks";
-            this.checkFaks.Size = new System.Drawing.Size(75, 37);
+            this.checkFaks.Size = new System.Drawing.Size(132, 46);
             this.checkFaks.TabIndex = 10;
-            this.checkFaks.Text = "Faks";
+            this.checkFaks.Text = "Faks No";
+            this.checkFaks.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.checkFaks.UseVisualStyleBackColor = true;
             this.checkFaks.CheckedChanged += new System.EventHandler(this.checkFaks_CheckedChanged);
             // 
             // checkTarih
             // 
             this.checkTarih.AutoSize = true;
-            this.checkTarih.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkTarih.Location = new System.Drawing.Point(37, 621);
+            this.checkTarih.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.checkTarih.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.checkTarih.Location = new System.Drawing.Point(29, 566);
             this.checkTarih.Name = "checkTarih";
-            this.checkTarih.Size = new System.Drawing.Size(86, 37);
+            this.checkTarih.Size = new System.Drawing.Size(101, 46);
             this.checkTarih.TabIndex = 9;
             this.checkTarih.Text = "Tarih";
+            this.checkTarih.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.checkTarih.UseVisualStyleBackColor = true;
             this.checkTarih.CheckedChanged += new System.EventHandler(this.checkTarih_CheckedChanged);
             // 
             // checkSirket
             // 
             this.checkSirket.AutoSize = true;
-            this.checkSirket.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkSirket.Location = new System.Drawing.Point(46, 535);
+            this.checkSirket.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.checkSirket.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.checkSirket.Location = new System.Drawing.Point(29, 609);
             this.checkSirket.Name = "checkSirket";
-            this.checkSirket.Size = new System.Drawing.Size(134, 37);
+            this.checkSirket.Size = new System.Drawing.Size(160, 46);
             this.checkSirket.TabIndex = 8;
             this.checkSirket.Text = "Şirket Adı";
+            this.checkSirket.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.checkSirket.UseVisualStyleBackColor = true;
             this.checkSirket.CheckedChanged += new System.EventHandler(this.checkSirket_CheckedChanged);
             // 
             // checkAdres
             // 
             this.checkAdres.AutoSize = true;
-            this.checkAdres.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkAdres.Location = new System.Drawing.Point(186, 535);
+            this.checkAdres.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.checkAdres.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.checkAdres.Location = new System.Drawing.Point(29, 523);
             this.checkAdres.Name = "checkAdres";
-            this.checkAdres.Size = new System.Drawing.Size(90, 37);
+            this.checkAdres.Size = new System.Drawing.Size(106, 46);
             this.checkAdres.TabIndex = 7;
             this.checkAdres.Text = "Adres";
+            this.checkAdres.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.checkAdres.UseVisualStyleBackColor = true;
             this.checkAdres.CheckedChanged += new System.EventHandler(this.checkAdres_CheckedChanged);
             // 
             // checkWeb
             // 
             this.checkWeb.AutoSize = true;
-            this.checkWeb.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkWeb.Location = new System.Drawing.Point(46, 578);
+            this.checkWeb.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.checkWeb.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.checkWeb.Location = new System.Drawing.Point(29, 652);
             this.checkWeb.Name = "checkWeb";
-            this.checkWeb.Size = new System.Drawing.Size(129, 37);
+            this.checkWeb.Size = new System.Drawing.Size(154, 46);
             this.checkWeb.TabIndex = 6;
             this.checkWeb.Text = "Web sitesi";
+            this.checkWeb.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.checkWeb.UseVisualStyleBackColor = true;
             this.checkWeb.CheckedChanged += new System.EventHandler(this.checkWeb_CheckedChanged);
             // 
             // checkMail
             // 
             this.checkMail.AutoSize = true;
-            this.checkMail.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkMail.Location = new System.Drawing.Point(240, 492);
+            this.checkMail.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.checkMail.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.checkMail.Location = new System.Drawing.Point(29, 480);
             this.checkMail.Name = "checkMail";
-            this.checkMail.Size = new System.Drawing.Size(74, 37);
+            this.checkMail.Size = new System.Drawing.Size(88, 46);
             this.checkMail.TabIndex = 5;
             this.checkMail.Text = "Mail";
+            this.checkMail.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.checkMail.UseVisualStyleBackColor = true;
             this.checkMail.CheckedChanged += new System.EventHandler(this.checkMail_CheckedChanged);
             // 
             // checkGsm
             // 
             this.checkGsm.AutoSize = true;
-            this.checkGsm.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkGsm.Location = new System.Drawing.Point(155, 492);
+            this.checkGsm.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.checkGsm.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.checkGsm.Location = new System.Drawing.Point(29, 351);
             this.checkGsm.Name = "checkGsm";
-            this.checkGsm.Size = new System.Drawing.Size(79, 37);
+            this.checkGsm.Size = new System.Drawing.Size(94, 46);
             this.checkGsm.TabIndex = 4;
             this.checkGsm.Text = "GSM";
+            this.checkGsm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.checkGsm.UseVisualStyleBackColor = true;
             this.checkGsm.CheckedChanged += new System.EventHandler(this.checkGsm_CheckedChanged);
             // 
             // checkTelefon
             // 
             this.checkTelefon.AutoSize = true;
-            this.checkTelefon.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkTelefon.Location = new System.Drawing.Point(46, 492);
+            this.checkTelefon.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.checkTelefon.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.checkTelefon.Location = new System.Drawing.Point(29, 394);
             this.checkTelefon.Name = "checkTelefon";
-            this.checkTelefon.Size = new System.Drawing.Size(103, 37);
+            this.checkTelefon.Size = new System.Drawing.Size(123, 46);
             this.checkTelefon.TabIndex = 3;
             this.checkTelefon.Text = "Telefon";
+            this.checkTelefon.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.checkTelefon.UseVisualStyleBackColor = true;
             this.checkTelefon.CheckedChanged += new System.EventHandler(this.checkTelefon_CheckedChanged);
             // 
             // checkUnvan
             // 
             this.checkUnvan.AutoSize = true;
-            this.checkUnvan.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkUnvan.Location = new System.Drawing.Point(212, 449);
+            this.checkUnvan.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.checkUnvan.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.checkUnvan.Location = new System.Drawing.Point(29, 308);
             this.checkUnvan.Name = "checkUnvan";
-            this.checkUnvan.Size = new System.Drawing.Size(96, 37);
+            this.checkUnvan.Size = new System.Drawing.Size(115, 46);
             this.checkUnvan.TabIndex = 2;
             this.checkUnvan.Text = "Unvan";
+            this.checkUnvan.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.checkUnvan.UseVisualStyleBackColor = true;
             this.checkUnvan.CheckedChanged += new System.EventHandler(this.checkUnvan_CheckedChanged);
             // 
             // checkSoyad
             // 
             this.checkSoyad.AutoSize = true;
-            this.checkSoyad.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkSoyad.Location = new System.Drawing.Point(114, 449);
+            this.checkSoyad.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.checkSoyad.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.checkSoyad.Location = new System.Drawing.Point(29, 265);
             this.checkSoyad.Name = "checkSoyad";
-            this.checkSoyad.Size = new System.Drawing.Size(92, 37);
+            this.checkSoyad.Size = new System.Drawing.Size(110, 46);
             this.checkSoyad.TabIndex = 1;
             this.checkSoyad.Text = "Soyad";
+            this.checkSoyad.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.checkSoyad.UseVisualStyleBackColor = true;
             this.checkSoyad.CheckedChanged += new System.EventHandler(this.checkSoyad_CheckedChanged);
             // 
             // checkAd
             // 
             this.checkAd.AutoSize = true;
-            this.checkAd.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkAd.Location = new System.Drawing.Point(46, 449);
+            this.checkAd.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.checkAd.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.checkAd.Location = new System.Drawing.Point(29, 222);
             this.checkAd.Name = "checkAd";
-            this.checkAd.Size = new System.Drawing.Size(62, 37);
+            this.checkAd.Size = new System.Drawing.Size(72, 46);
             this.checkAd.TabIndex = 0;
             this.checkAd.Text = "Ad";
+            this.checkAd.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.checkAd.UseVisualStyleBackColor = true;
             this.checkAd.CheckedChanged += new System.EventHandler(this.checkAd_CheckedChanged);
-            // 
-            // btnCikti
-            // 
-            this.btnCikti.BackColor = System.Drawing.Color.Khaki;
-            this.btnCikti.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btnCikti.Location = new System.Drawing.Point(81, 293);
-            this.btnCikti.Name = "btnCikti";
-            this.btnCikti.Size = new System.Drawing.Size(227, 45);
-            this.btnCikti.TabIndex = 32;
-            this.btnCikti.Text = "ÇIKTI AL";
-            this.btnCikti.UseVisualStyleBackColor = false;
-            this.btnCikti.Click += new System.EventHandler(this.btnCikti_Click);
             // 
             // Form1
             // 
@@ -930,6 +983,8 @@
         private System.Windows.Forms.Label lblSeciniz;
         private System.Windows.Forms.CheckBox checkGenis;
         private System.Windows.Forms.Button btnCikti;
+        private System.Windows.Forms.Label lblAramaRapor;
+        private System.Windows.Forms.TextBox tbAramaRapor;
     }
 }
 
