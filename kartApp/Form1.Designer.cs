@@ -30,12 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblAdi = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -70,12 +73,22 @@
             this.tbGsm = new System.Windows.Forms.MaskedTextBox();
             this.menuSecim = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnTemizle = new System.Windows.Forms.Button();
             this.checkGenis = new System.Windows.Forms.CheckBox();
             this.btnKaliciSil = new System.Windows.Forms.Button();
             this.cmbKategori = new System.Windows.Forms.ComboBox();
             this.lblArama = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnKatSil = new System.Windows.Forms.Button();
+            this.btnKatEkle2 = new System.Windows.Forms.Button();
+            this.tbKategori = new System.Windows.Forms.MaskedTextBox();
+            this.grdKategori = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.lblAramaRapor2 = new System.Windows.Forms.Label();
+            this.tbAramaRapor2 = new System.Windows.Forms.TextBox();
+            this.checkKatAdi = new System.Windows.Forms.CheckBox();
+            this.checkAktifPasif = new System.Windows.Forms.CheckBox();
+            this.checkTumunu = new System.Windows.Forms.CheckBox();
             this.lblAramaRapor = new System.Windows.Forms.Label();
             this.tbAramaRapor = new System.Windows.Forms.TextBox();
             this.btnCikti = new System.Windows.Forms.Button();
@@ -93,10 +106,13 @@
             this.checkUnvan = new System.Windows.Forms.CheckBox();
             this.checkSoyad = new System.Windows.Forms.CheckBox();
             this.checkAd = new System.Windows.Forms.CheckBox();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdOgrenci)).BeginInit();
             this.menuSecim.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdKategori)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdOgrenciRapor)).BeginInit();
             this.SuspendLayout();
@@ -368,34 +384,33 @@
             // 
             this.grdOgrenci.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grdOgrenci.BackgroundColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Khaki;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdOgrenci.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.Khaki;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdOgrenci.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.grdOgrenci.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Khaki;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdOgrenci.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.Khaki;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdOgrenci.DefaultCellStyle = dataGridViewCellStyle11;
             this.grdOgrenci.Location = new System.Drawing.Point(707, 79);
             this.grdOgrenci.Name = "grdOgrenci";
-            this.grdOgrenci.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Khaki;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdOgrenci.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.Khaki;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdOgrenci.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.grdOgrenci.Size = new System.Drawing.Size(1108, 772);
             this.grdOgrenci.TabIndex = 40;
             this.grdOgrenci.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdOgrenci_CellClick_1);
@@ -528,6 +543,7 @@
             // 
             this.tabPage1.AutoScroll = true;
             this.tabPage1.BackColor = System.Drawing.SystemColors.Info;
+            this.tabPage1.Controls.Add(this.btnTemizle);
             this.tabPage1.Controls.Add(this.checkGenis);
             this.tabPage1.Controls.Add(this.btnKaliciSil);
             this.tabPage1.Controls.Add(this.cmbKategori);
@@ -571,6 +587,18 @@
             this.tabPage1.Text = "Ana Menü";
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
+            // btnTemizle
+            // 
+            this.btnTemizle.BackColor = System.Drawing.Color.Khaki;
+            this.btnTemizle.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnTemizle.Location = new System.Drawing.Point(447, 35);
+            this.btnTemizle.Name = "btnTemizle";
+            this.btnTemizle.Size = new System.Drawing.Size(227, 45);
+            this.btnTemizle.TabIndex = 54;
+            this.btnTemizle.Text = "TEMİZLE";
+            this.btnTemizle.UseVisualStyleBackColor = false;
+            this.btnTemizle.Click += new System.EventHandler(this.btnTemizle_Click);
+            // 
             // checkGenis
             // 
             this.checkGenis.AutoSize = true;
@@ -602,6 +630,7 @@
             this.cmbKategori.Name = "cmbKategori";
             this.cmbKategori.Size = new System.Drawing.Size(227, 24);
             this.cmbKategori.TabIndex = 51;
+            this.cmbKategori.SelectedIndexChanged += new System.EventHandler(this.cmbKategori_SelectedIndexChanged);
             // 
             // lblArama
             // 
@@ -617,18 +646,100 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.BackColor = System.Drawing.SystemColors.Info;
+            this.tabPage2.Controls.Add(this.btnKatSil);
+            this.tabPage2.Controls.Add(this.btnKatEkle2);
+            this.tabPage2.Controls.Add(this.tbKategori);
+            this.tabPage2.Controls.Add(this.grdKategori);
             this.tabPage2.Location = new System.Drawing.Point(4, 37);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(1834, 866);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Koleksiyon";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
+            // 
+            // btnKatSil
+            // 
+            this.btnKatSil.BackColor = System.Drawing.Color.Khaki;
+            this.btnKatSil.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnKatSil.Location = new System.Drawing.Point(46, 181);
+            this.btnKatSil.Name = "btnKatSil";
+            this.btnKatSil.Size = new System.Drawing.Size(477, 45);
+            this.btnKatSil.TabIndex = 33;
+            this.btnKatSil.Text = "SİL";
+            this.btnKatSil.UseVisualStyleBackColor = false;
+            this.btnKatSil.Click += new System.EventHandler(this.btnKatSil_Click);
+            // 
+            // btnKatEkle2
+            // 
+            this.btnKatEkle2.BackColor = System.Drawing.Color.Khaki;
+            this.btnKatEkle2.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnKatEkle2.Location = new System.Drawing.Point(46, 130);
+            this.btnKatEkle2.Name = "btnKatEkle2";
+            this.btnKatEkle2.Size = new System.Drawing.Size(477, 45);
+            this.btnKatEkle2.TabIndex = 32;
+            this.btnKatEkle2.Text = "EKLE";
+            this.btnKatEkle2.UseVisualStyleBackColor = false;
+            this.btnKatEkle2.Click += new System.EventHandler(this.btnKatEkle_Click);
+            // 
+            // tbKategori
+            // 
+            this.tbKategori.BackColor = System.Drawing.Color.Khaki;
+            this.tbKategori.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbKategori.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.tbKategori.Location = new System.Drawing.Point(46, 80);
+            this.tbKategori.MinimumSize = new System.Drawing.Size(166, 44);
+            this.tbKategori.Name = "tbKategori";
+            this.tbKategori.Size = new System.Drawing.Size(477, 38);
+            this.tbKategori.TabIndex = 21;
+            this.tbKategori.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // grdKategori
+            // 
+            this.grdKategori.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.grdKategori.BackgroundColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.Khaki;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdKategori.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            this.grdKategori.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.Khaki;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdKategori.DefaultCellStyle = dataGridViewCellStyle17;
+            this.grdKategori.Location = new System.Drawing.Point(564, 80);
+            this.grdKategori.Name = "grdKategori";
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.Khaki;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdKategori.RowHeadersDefaultCellStyle = dataGridViewCellStyle18;
+            this.grdKategori.Size = new System.Drawing.Size(1210, 627);
+            this.grdKategori.TabIndex = 12;
+            this.grdKategori.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdKategori_CellClick);
+            this.grdKategori.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdKategori_CellDoubleClick);
             // 
             // tabPage3
             // 
             this.tabPage3.AutoScroll = true;
             this.tabPage3.BackColor = System.Drawing.SystemColors.Info;
+            this.tabPage3.Controls.Add(this.lblAramaRapor2);
+            this.tabPage3.Controls.Add(this.tbAramaRapor2);
+            this.tabPage3.Controls.Add(this.checkKatAdi);
+            this.tabPage3.Controls.Add(this.checkAktifPasif);
+            this.tabPage3.Controls.Add(this.checkTumunu);
             this.tabPage3.Controls.Add(this.lblAramaRapor);
             this.tabPage3.Controls.Add(this.tbAramaRapor);
             this.tabPage3.Controls.Add(this.btnCikti);
@@ -652,6 +763,73 @@
             this.tabPage3.Size = new System.Drawing.Size(1834, 866);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Rapor";
+            // 
+            // lblAramaRapor2
+            // 
+            this.lblAramaRapor2.BackColor = System.Drawing.Color.Firebrick;
+            this.lblAramaRapor2.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblAramaRapor2.ForeColor = System.Drawing.Color.Black;
+            this.lblAramaRapor2.Location = new System.Drawing.Point(280, 787);
+            this.lblAramaRapor2.Name = "lblAramaRapor2";
+            this.lblAramaRapor2.Size = new System.Drawing.Size(740, 45);
+            this.lblAramaRapor2.TabIndex = 57;
+            this.lblAramaRapor2.Text = "KATEGORİ ADINA GÖRE ARAMA";
+            this.lblAramaRapor2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // tbAramaRapor2
+            // 
+            this.tbAramaRapor2.BackColor = System.Drawing.Color.Khaki;
+            this.tbAramaRapor2.Font = new System.Drawing.Font("Segoe Print", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbAramaRapor2.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.tbAramaRapor2.Location = new System.Drawing.Point(1026, 787);
+            this.tbAramaRapor2.Multiline = true;
+            this.tbAramaRapor2.Name = "tbAramaRapor2";
+            this.tbAramaRapor2.Size = new System.Drawing.Size(791, 45);
+            this.tbAramaRapor2.TabIndex = 56;
+            this.tbAramaRapor2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbAramaRapor2.TextChanged += new System.EventHandler(this.tbAramaRapor2_TextChanged);
+            // 
+            // checkKatAdi
+            // 
+            this.checkKatAdi.AutoSize = true;
+            this.checkKatAdi.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.checkKatAdi.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.checkKatAdi.Location = new System.Drawing.Point(29, 637);
+            this.checkKatAdi.Name = "checkKatAdi";
+            this.checkKatAdi.Size = new System.Drawing.Size(124, 40);
+            this.checkKatAdi.TabIndex = 55;
+            this.checkKatAdi.Text = "Kategori";
+            this.checkKatAdi.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkKatAdi.UseVisualStyleBackColor = true;
+            this.checkKatAdi.CheckedChanged += new System.EventHandler(this.checkKatAdi_CheckedChanged);
+            // 
+            // checkAktifPasif
+            // 
+            this.checkAktifPasif.AutoSize = true;
+            this.checkAktifPasif.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.checkAktifPasif.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.checkAktifPasif.Location = new System.Drawing.Point(29, 683);
+            this.checkAktifPasif.Name = "checkAktifPasif";
+            this.checkAktifPasif.Size = new System.Drawing.Size(144, 40);
+            this.checkAktifPasif.TabIndex = 54;
+            this.checkAktifPasif.Text = "Aktif Pasif";
+            this.checkAktifPasif.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkAktifPasif.UseVisualStyleBackColor = true;
+            this.checkAktifPasif.CheckedChanged += new System.EventHandler(this.checkAktifPasif_CheckedChanged);
+            // 
+            // checkTumunu
+            // 
+            this.checkTumunu.AutoSize = true;
+            this.checkTumunu.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.checkTumunu.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.checkTumunu.Location = new System.Drawing.Point(174, 737);
+            this.checkTumunu.Name = "checkTumunu";
+            this.checkTumunu.Size = new System.Drawing.Size(99, 32);
+            this.checkTumunu.TabIndex = 53;
+            this.checkTumunu.Text = "Tümünü";
+            this.checkTumunu.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkTumunu.UseVisualStyleBackColor = true;
+            this.checkTumunu.CheckedChanged += new System.EventHandler(this.checkTumunu_CheckedChanged);
             // 
             // lblAramaRapor
             // 
@@ -682,18 +860,18 @@
             // 
             this.btnCikti.BackColor = System.Drawing.Color.Khaki;
             this.btnCikti.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btnCikti.Location = new System.Drawing.Point(29, 774);
+            this.btnCikti.Location = new System.Drawing.Point(29, 787);
             this.btnCikti.Name = "btnCikti";
             this.btnCikti.Size = new System.Drawing.Size(227, 45);
             this.btnCikti.TabIndex = 32;
-            this.btnCikti.Text = "EXCEL\'E AKTAR";
+            this.btnCikti.Text = "YAZDIR";
             this.btnCikti.UseVisualStyleBackColor = false;
             this.btnCikti.Click += new System.EventHandler(this.btnCikti_Click);
             // 
             // lblSeciniz
             // 
             this.lblSeciniz.Font = new System.Drawing.Font("Segoe Print", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.lblSeciniz.Location = new System.Drawing.Point(21, 67);
+            this.lblSeciniz.Location = new System.Drawing.Point(20, 17);
             this.lblSeciniz.Name = "lblSeciniz";
             this.lblSeciniz.Size = new System.Drawing.Size(253, 152);
             this.lblSeciniz.TabIndex = 13;
@@ -703,13 +881,11 @@
             // checkID
             // 
             this.checkID.AutoSize = true;
-            this.checkID.Checked = true;
-            this.checkID.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkID.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.checkID.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.checkID.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.checkID.Location = new System.Drawing.Point(29, 710);
+            this.checkID.Location = new System.Drawing.Point(29, 729);
             this.checkID.Name = "checkID";
-            this.checkID.Size = new System.Drawing.Size(136, 46);
+            this.checkID.Size = new System.Drawing.Size(121, 40);
             this.checkID.TabIndex = 12;
             this.checkID.Text = "Numara";
             this.checkID.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -720,44 +896,44 @@
             // 
             this.grdOgrenciRapor.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grdOgrenciRapor.BackgroundColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Khaki;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdOgrenciRapor.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.Khaki;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdOgrenciRapor.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.grdOgrenciRapor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Khaki;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdOgrenciRapor.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.Khaki;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdOgrenciRapor.DefaultCellStyle = dataGridViewCellStyle14;
             this.grdOgrenciRapor.Location = new System.Drawing.Point(280, 102);
             this.grdOgrenciRapor.Name = "grdOgrenciRapor";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Khaki;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdOgrenciRapor.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            this.grdOgrenciRapor.Size = new System.Drawing.Size(1537, 730);
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.Khaki;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdOgrenciRapor.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            this.grdOgrenciRapor.Size = new System.Drawing.Size(1537, 682);
             this.grdOgrenciRapor.TabIndex = 11;
             // 
             // checkFaks
             // 
             this.checkFaks.AutoSize = true;
-            this.checkFaks.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.checkFaks.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.checkFaks.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.checkFaks.Location = new System.Drawing.Point(29, 437);
+            this.checkFaks.Location = new System.Drawing.Point(29, 376);
             this.checkFaks.Name = "checkFaks";
-            this.checkFaks.Size = new System.Drawing.Size(132, 46);
+            this.checkFaks.Size = new System.Drawing.Size(116, 40);
             this.checkFaks.TabIndex = 10;
             this.checkFaks.Text = "Faks No";
             this.checkFaks.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -767,11 +943,11 @@
             // checkTarih
             // 
             this.checkTarih.AutoSize = true;
-            this.checkTarih.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.checkTarih.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.checkTarih.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.checkTarih.Location = new System.Drawing.Point(29, 566);
+            this.checkTarih.Location = new System.Drawing.Point(29, 505);
             this.checkTarih.Name = "checkTarih";
-            this.checkTarih.Size = new System.Drawing.Size(101, 46);
+            this.checkTarih.Size = new System.Drawing.Size(90, 40);
             this.checkTarih.TabIndex = 9;
             this.checkTarih.Text = "Tarih";
             this.checkTarih.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -781,11 +957,11 @@
             // checkSirket
             // 
             this.checkSirket.AutoSize = true;
-            this.checkSirket.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.checkSirket.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.checkSirket.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.checkSirket.Location = new System.Drawing.Point(29, 609);
+            this.checkSirket.Location = new System.Drawing.Point(29, 548);
             this.checkSirket.Name = "checkSirket";
-            this.checkSirket.Size = new System.Drawing.Size(160, 46);
+            this.checkSirket.Size = new System.Drawing.Size(141, 40);
             this.checkSirket.TabIndex = 8;
             this.checkSirket.Text = "Şirket Adı";
             this.checkSirket.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -795,11 +971,11 @@
             // checkAdres
             // 
             this.checkAdres.AutoSize = true;
-            this.checkAdres.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.checkAdres.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.checkAdres.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.checkAdres.Location = new System.Drawing.Point(29, 523);
+            this.checkAdres.Location = new System.Drawing.Point(29, 462);
             this.checkAdres.Name = "checkAdres";
-            this.checkAdres.Size = new System.Drawing.Size(106, 46);
+            this.checkAdres.Size = new System.Drawing.Size(95, 40);
             this.checkAdres.TabIndex = 7;
             this.checkAdres.Text = "Adres";
             this.checkAdres.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -809,11 +985,11 @@
             // checkWeb
             // 
             this.checkWeb.AutoSize = true;
-            this.checkWeb.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.checkWeb.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.checkWeb.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.checkWeb.Location = new System.Drawing.Point(29, 652);
+            this.checkWeb.Location = new System.Drawing.Point(29, 591);
             this.checkWeb.Name = "checkWeb";
-            this.checkWeb.Size = new System.Drawing.Size(154, 46);
+            this.checkWeb.Size = new System.Drawing.Size(137, 40);
             this.checkWeb.TabIndex = 6;
             this.checkWeb.Text = "Web sitesi";
             this.checkWeb.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -823,11 +999,11 @@
             // checkMail
             // 
             this.checkMail.AutoSize = true;
-            this.checkMail.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.checkMail.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.checkMail.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.checkMail.Location = new System.Drawing.Point(29, 480);
+            this.checkMail.Location = new System.Drawing.Point(29, 419);
             this.checkMail.Name = "checkMail";
-            this.checkMail.Size = new System.Drawing.Size(88, 46);
+            this.checkMail.Size = new System.Drawing.Size(78, 40);
             this.checkMail.TabIndex = 5;
             this.checkMail.Text = "Mail";
             this.checkMail.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -837,11 +1013,11 @@
             // checkGsm
             // 
             this.checkGsm.AutoSize = true;
-            this.checkGsm.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.checkGsm.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.checkGsm.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.checkGsm.Location = new System.Drawing.Point(29, 351);
+            this.checkGsm.Location = new System.Drawing.Point(29, 290);
             this.checkGsm.Name = "checkGsm";
-            this.checkGsm.Size = new System.Drawing.Size(94, 46);
+            this.checkGsm.Size = new System.Drawing.Size(83, 40);
             this.checkGsm.TabIndex = 4;
             this.checkGsm.Text = "GSM";
             this.checkGsm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -851,11 +1027,11 @@
             // checkTelefon
             // 
             this.checkTelefon.AutoSize = true;
-            this.checkTelefon.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.checkTelefon.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.checkTelefon.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.checkTelefon.Location = new System.Drawing.Point(29, 394);
+            this.checkTelefon.Location = new System.Drawing.Point(29, 333);
             this.checkTelefon.Name = "checkTelefon";
-            this.checkTelefon.Size = new System.Drawing.Size(123, 46);
+            this.checkTelefon.Size = new System.Drawing.Size(110, 40);
             this.checkTelefon.TabIndex = 3;
             this.checkTelefon.Text = "Telefon";
             this.checkTelefon.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -865,11 +1041,13 @@
             // checkUnvan
             // 
             this.checkUnvan.AutoSize = true;
-            this.checkUnvan.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.checkUnvan.Checked = true;
+            this.checkUnvan.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkUnvan.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.checkUnvan.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.checkUnvan.Location = new System.Drawing.Point(29, 308);
+            this.checkUnvan.Location = new System.Drawing.Point(29, 247);
             this.checkUnvan.Name = "checkUnvan";
-            this.checkUnvan.Size = new System.Drawing.Size(115, 46);
+            this.checkUnvan.Size = new System.Drawing.Size(101, 40);
             this.checkUnvan.TabIndex = 2;
             this.checkUnvan.Text = "Unvan";
             this.checkUnvan.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -879,11 +1057,13 @@
             // checkSoyad
             // 
             this.checkSoyad.AutoSize = true;
-            this.checkSoyad.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.checkSoyad.Checked = true;
+            this.checkSoyad.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkSoyad.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.checkSoyad.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.checkSoyad.Location = new System.Drawing.Point(29, 265);
+            this.checkSoyad.Location = new System.Drawing.Point(29, 204);
             this.checkSoyad.Name = "checkSoyad";
-            this.checkSoyad.Size = new System.Drawing.Size(110, 46);
+            this.checkSoyad.Size = new System.Drawing.Size(97, 40);
             this.checkSoyad.TabIndex = 1;
             this.checkSoyad.Text = "Soyad";
             this.checkSoyad.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -893,16 +1073,23 @@
             // checkAd
             // 
             this.checkAd.AutoSize = true;
-            this.checkAd.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.checkAd.Checked = true;
+            this.checkAd.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkAd.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.checkAd.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.checkAd.Location = new System.Drawing.Point(29, 222);
+            this.checkAd.Location = new System.Drawing.Point(29, 161);
             this.checkAd.Name = "checkAd";
-            this.checkAd.Size = new System.Drawing.Size(72, 46);
+            this.checkAd.Size = new System.Drawing.Size(64, 40);
             this.checkAd.TabIndex = 0;
             this.checkAd.Text = "Ad";
             this.checkAd.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.checkAd.UseVisualStyleBackColor = true;
             this.checkAd.CheckedChanged += new System.EventHandler(this.checkAd_CheckedChanged);
+            // 
+            // printDocument1
+            // 
+            this.printDocument1.BeginPrint += new System.Drawing.Printing.PrintEventHandler(this.printDocument1_BeginPrint);
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
             // 
             // Form1
             // 
@@ -920,6 +1107,9 @@
             this.menuSecim.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdKategori)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdOgrenciRapor)).EndInit();
@@ -985,6 +1175,17 @@
         private System.Windows.Forms.Button btnCikti;
         private System.Windows.Forms.Label lblAramaRapor;
         private System.Windows.Forms.TextBox tbAramaRapor;
+        private System.Windows.Forms.CheckBox checkTumunu;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.DataGridView grdKategori;
+        private System.Windows.Forms.Button btnKatEkle2;
+        private System.Windows.Forms.MaskedTextBox tbKategori;
+        private System.Windows.Forms.Button btnKatSil;
+        private System.Windows.Forms.CheckBox checkAktifPasif;
+        private System.Windows.Forms.CheckBox checkKatAdi;
+        private System.Windows.Forms.Label lblAramaRapor2;
+        private System.Windows.Forms.TextBox tbAramaRapor2;
+        private System.Windows.Forms.Button btnTemizle;
     }
 }
 

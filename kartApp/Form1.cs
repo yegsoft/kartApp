@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -15,32 +17,39 @@ namespace kartApp
 {
     public partial class Form1 : Form
     {
+        StringFormat strFormat;
+        ArrayList arrColumnLefts = new ArrayList();
+        ArrayList arrColumnWidths = new ArrayList();
+        ArrayList liste = new ArrayList();
+        int iCellHeight = 0;
+        int iTotalWidth = 0;
+        int iRow = 0;
+        bool bFirstPage = false;
+        bool bNewPage = false;
+        int iHeaderHeight = 0;
+        int sayici = 0;
         public Form1()
         {
             InitializeComponent();
             transparan();
             grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriGetir());
             grdOgrenci.Sort(grdOgrenci.Columns["ID"], ListSortDirection.Ascending);
-            grdOgrenciRapor.DataSource = Yardimci.Tablo(Yardimci.VeriGetir());
+            grdOgrenciRapor.DataSource = Yardimci.Tablo(Yardimci.VeriGetirRapor());
+            grdKategori.DataSource = Yardimci.Tablo(Yardimci.KategoriGetir());
+
+
 
             DataGridViewCheckBoxColumn checkColumn = new DataGridViewCheckBoxColumn();
             checkColumn.Name = "X";
-            checkColumn.HeaderText = "X";
+            checkColumn.HeaderText = "seçiniz";
             checkColumn.Width = 50;
             checkColumn.ReadOnly = false;
-            checkColumn.FillWeight = 12;            
-            grdOgrenciRapor.Columns.Add(checkColumn);
-
-            
-
-            
+            checkColumn.FillWeight = 12;
+            checkColumn.DisplayIndex = 0;
+            grdOgrenci.Columns.Add(checkColumn);
 
 
 
-            for (int i = 1; i <= 11; i++)
-            {
-                grdOgrenciRapor.Columns[i].Visible = false;
-            }
 
             cmbKategori.DataSource = Yardimci.Tablo(Yardimci.KategoriGetir());
             cmbKategori.DisplayMember = "KatAdi";
@@ -49,10 +58,11 @@ namespace kartApp
 
 
         string satir;
+
         private void grdOgrenci_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {   
             
-            satir = grdOgrenci.CurrentRow.Cells[0].Value.ToString();
+            satir = grdOgrenci.CurrentRow.Cells[1].Value.ToString();
 
             if (btnIslem2.Text == "PASİFLER")
             {
@@ -63,19 +73,37 @@ namespace kartApp
                 btnIslem.Text = "GERİ AL";
             }
 
-            tbAdi.Text = grdOgrenci.CurrentRow.Cells[1].Value.ToString();
-            tbSoyadi.Text = grdOgrenci.CurrentRow.Cells[2].Value.ToString();
-            tbUnvani.Text = grdOgrenci.CurrentRow.Cells[3].Value.ToString();
-            tbTarih.Text = grdOgrenci.CurrentRow.Cells[4].Value.ToString();
+            tbAdi.Text = grdOgrenci.CurrentRow.Cells[2].Value.ToString();
+            tbSoyadi.Text = grdOgrenci.CurrentRow.Cells[3].Value.ToString();
+            tbUnvani.Text = grdOgrenci.CurrentRow.Cells[4].Value.ToString();
+            tbTarih.Text = grdOgrenci.CurrentRow.Cells[5].Value.ToString();
             tbTelefonu.Text = grdOgrenci.CurrentRow.Cells[5].Value.ToString();
             tbGsm.Text = grdOgrenci.CurrentRow.Cells[6].Value.ToString();
-            tbFaks.Text = grdOgrenci.CurrentRow.Cells[7].Value.ToString();
-            tbAdresi.Text = grdOgrenci.CurrentRow.Cells[9].Value.ToString();
-            tbSirketAdi.Text = grdOgrenci.CurrentRow.Cells[10].Value.ToString();
-            tbWebSitesi.Text = grdOgrenci.CurrentRow.Cells[11].Value.ToString();
+            tbFaks.Text = grdOgrenci.CurrentRow.Cells[8].Value.ToString();
+            tbAdresi.Text = grdOgrenci.CurrentRow.Cells[10].Value.ToString();
+            tbSirketAdi.Text = grdOgrenci.CurrentRow.Cells[11].Value.ToString();
+            tbWebSitesi.Text = grdOgrenci.CurrentRow.Cells[12].Value.ToString();
 
+            
 
+        }
 
+        
+        private void grdKategori_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            satir = grdKategori.CurrentRow.Cells[0].Value.ToString();
+
+            btnKatEkle2.Text = "GÜNCELLE";
+
+        }
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+            btnKatEkle2.Text = "EKLE";
+            btnKatEkle2.Enabled = true;
+            btnKatSil.Enabled = true;
+            grdKategori.DataSource = Yardimci.Tablo(Yardimci.KategoriGetir());
+
+            
         }
 
 
@@ -87,6 +115,59 @@ namespace kartApp
         private void tabPage1_Click(object sender, EventArgs e)
         {
             btnIslem.Text = "KAYDET";
+            tbAdi.Clear();
+            tbSoyadi.Clear();
+            tbUnvani.Clear();
+            tbTelefonu.Clear();
+            tbMail.Clear();
+            tbUzanti.Clear();
+            tbFaks.Clear();
+            tbWebSitesi.Clear();
+            tbAdresi.Clear();
+            tbSirketAdi.Clear();
+            tbTarih.Clear();
+            tbGsm.Clear();
+
+            
+
+        }
+
+        private void btnTemizle_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in grdOgrenci.Rows)
+            {
+                if (row.Cells[0].Value != null && row.Cells[0].Value.Equals(true))                
+                {
+                    row.Selected = true;
+                    row.DefaultCellStyle.SelectionBackColor = Color.LightSlateGray;                    
+                }
+                else
+                    row.Selected = false;
+            }
+
+
+
+            foreach (DataGridViewRow row in grdOgrenci.Rows)
+            {
+                if (row.Selected == true)
+                {
+
+                    string b = row.Cells[1].Value.ToString();
+                    //string b = grdOgrenci.CurrentRow.Cells[1].Value.ToString();
+                    string a = cmbKategori.SelectedValue.ToString();
+                    Yardimci.Tablo(Yardimci.KisiKategoriGuncelle(a, b));
+                }
+                else
+                {
+                    continue;
+                }
+            }
+
+
+                
+                grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriGetir());
+                grdOgrenci.ClearSelection();
+            
         }
 
 
@@ -122,7 +203,7 @@ namespace kartApp
             }
             else if (btnIslem2.Text == "AKTİFLER")
             {
-                grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriGetir());
+                grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriGetirRapor());
                 grdOgrenci.Sort(grdOgrenci.Columns["ID"], ListSortDirection.Ascending);
                 btnIslem2.Text = "PASİFLER";
             }
@@ -189,10 +270,11 @@ namespace kartApp
                 string sirket = Convert.ToString(tbSirketAdi.Text);
                 string web = Convert.ToString(tbWebSitesi.Text);
                 string gsm = Convert.ToString(tbGsm.Text);
+                string katid = cmbKategori.SelectedValue.ToString();
 
                 try
                 {
-                    grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriKaydet(ad, soyad, unvan, tarih, tel, gsm, fax, mail, adres, sirket, web));
+                    grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriKaydet(ad, soyad, unvan, tarih, tel, gsm, fax, mail, adres, sirket, web, katid));
                     grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriGetir());
                     grdOgrenci.Sort(grdOgrenci.Columns["ID"], ListSortDirection.Ascending);
 
@@ -236,8 +318,9 @@ namespace kartApp
                     string sirket = Convert.ToString(tbSirketAdi.Text);
                     string web = Convert.ToString(tbWebSitesi.Text);
                     string gsm = Convert.ToString(tbGsm.Text);
+                    string katid = cmbKategori.SelectedValue.ToString();
 
-                    grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriKaydet(ad, soyad, unvan, tarih, tel, gsm, fax, mail, adres, sirket, web));
+                    grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriKaydet(ad, soyad, unvan, tarih, tel, gsm, fax, mail, adres, sirket, web, katid));
                     grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriGetir());
                     grdOgrenci.Sort(grdOgrenci.Columns["ID"], ListSortDirection.Ascending);
 
@@ -255,32 +338,6 @@ namespace kartApp
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-                //lblKayitBasarili.Text = "ZATEN VAR";
-                //time();
-
-                //lblgosterge.Text = grdOgrenci.CurrentRow.Cells[0].Value.ToString();                
-
-                //tbAdi.Text = grdOgrenci.Rows[tüm].Cells[1].Value.ToString();
-                //tbSoyadi.Text = grdOgrenci.Rows[tüm].Cells[2].Value.ToString();
-                //tbUnvani.Text = grdOgrenci.Rows[tüm].Cells[3].Value.ToString();
-                //tbTarih.Text = grdOgrenci.Rows[tüm].Cells[4].Value.ToString();
-                //tbTelefonu.Text = grdOgrenci.Rows[tüm].Cells[5].Value.ToString();
-                //tbGsm.Text = grdOgrenci.Rows[tüm].Cells[6].Value.ToString();
-                //tbFaks.Text = grdOgrenci.Rows[tüm].Cells[7].Value.ToString();                
-                //tbAdresi.Text = grdOgrenci.Rows[tüm].Cells[9].Value.ToString();
-                //tbSirketAdi.Text = grdOgrenci.Rows[tüm].Cells[10].Value.ToString();
-                //tbWebSitesi.Text = grdOgrenci.Rows[tüm].Cells[11].Value.ToString();
 
             }
         }
@@ -318,8 +375,9 @@ namespace kartApp
                 string sirket = Convert.ToString(tbSirketAdi.Text);
                 string web = Convert.ToString(tbWebSitesi.Text);
                 string gsm = Convert.ToString(tbGsm.Text);
+                string katid = cmbKategori.SelectedValue.ToString();
 
-                grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriGuncelle(ad, soyad, unvan, tarih, tel, gsm, fax, mail, adres, sirket, web, satir));
+                grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriGuncelle(ad, soyad, unvan, tarih, tel, gsm, fax, mail, adres, sirket, web, satir, katid));
                 grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriGetir());
                 grdOgrenci.Sort(grdOgrenci.Columns["ID"], ListSortDirection.Ascending);
             }
@@ -404,8 +462,8 @@ namespace kartApp
             lblGsm.BackColor = Color.Transparent;
             lblArama.BackColor = Color.Transparent;
             lblAramaRapor.BackColor = Color.Transparent;
+            lblAramaRapor2.BackColor = Color.Transparent;
 
-            
 
         }
 
@@ -431,150 +489,178 @@ namespace kartApp
         private void tbAramaRapor_TextChanged(object sender, EventArgs e)
         {
             (grdOgrenciRapor.DataSource as DataTable).DefaultView.RowFilter = string.Format("Ad like '%" + tbAramaRapor.Text + "%' OR Soyad like '%" + tbAramaRapor.Text + "%' OR Tarih like '%" + tbAramaRapor.Text + "%' OR SirketAd like '%" + tbAramaRapor.Text + "%'");
-
+        }
+        private void tbAramaRapor2_TextChanged(object sender, EventArgs e)
+        {
+            (grdOgrenciRapor.DataSource as DataTable).DefaultView.RowFilter = string.Format("KatAdi like '%" + tbAramaRapor2.Text + "%'");
         }
 
         private void checkAd_CheckedChanged(object sender, EventArgs e)
         {
-            if (grdOgrenciRapor.Columns[2].Visible == false)
+            if (checkAd.Checked == true)
             {
-                grdOgrenciRapor.Columns[2].Visible = true;
+                grdOgrenciRapor.Columns[1].Visible = true;
             }
-            else if (grdOgrenciRapor.Columns[2].Visible == true)
+            else if (checkAd.Checked == false)
             {
-                grdOgrenciRapor.Columns[2].Visible = false;
+                grdOgrenciRapor.Columns[1].Visible = false;
             }
         }
 
         private void checkSoyad_CheckedChanged(object sender, EventArgs e)
         {
-            if (grdOgrenciRapor.Columns[3].Visible == false)
+            if (checkSoyad.Checked == true)
             {
-                grdOgrenciRapor.Columns[3].Visible = true;
+                grdOgrenciRapor.Columns[2].Visible = true;
             }
-            else if (grdOgrenciRapor.Columns[3].Visible == true)
+            else if (checkSoyad.Checked == false)
             {
-                grdOgrenciRapor.Columns[3].Visible = false;
+                grdOgrenciRapor.Columns[2].Visible = false;
             }
         }
 
         private void checkUnvan_CheckedChanged(object sender, EventArgs e)
         {
-            if (grdOgrenciRapor.Columns[4].Visible == false)
+            if (checkUnvan.Checked == true)
             {
-                grdOgrenciRapor.Columns[4].Visible = true;
+                grdOgrenciRapor.Columns[3].Visible = true;
             }
-            else if (grdOgrenciRapor.Columns[4].Visible == true)
+            else if (checkUnvan.Checked == false)
             {
-                grdOgrenciRapor.Columns[4].Visible = false;
+                grdOgrenciRapor.Columns[3].Visible = false;
             }
         }
 
         private void checkTarih_CheckedChanged(object sender, EventArgs e)
         {
-            if (grdOgrenciRapor.Columns[5].Visible == false)
+            if (checkTarih.Checked == true)
             {
-                grdOgrenciRapor.Columns[5].Visible = true;
+                grdOgrenciRapor.Columns[4].Visible = true;
             }
-            else if (grdOgrenciRapor.Columns[5].Visible == true)
+            else if (checkTarih.Checked == false)
             {
-                grdOgrenciRapor.Columns[5].Visible = false;
+                grdOgrenciRapor.Columns[4].Visible = false;
             }
         }
 
         private void checkTelefon_CheckedChanged(object sender, EventArgs e)
         {
-            if (grdOgrenciRapor.Columns[6].Visible == false)
+            if (checkTelefon.Checked == true)
             {
-                grdOgrenciRapor.Columns[6].Visible = true;
+                grdOgrenciRapor.Columns[5].Visible = true;
             }
-            else if (grdOgrenciRapor.Columns[6].Visible == true)
+            else if (checkTelefon.Checked == false)
             {
-                grdOgrenciRapor.Columns[6].Visible = false;
+                grdOgrenciRapor.Columns[5].Visible = false;
             }
         }
 
         private void checkGsm_CheckedChanged(object sender, EventArgs e)
         {
-            if (grdOgrenciRapor.Columns[7].Visible == false)
+            if (checkGsm.Checked == true)
             {
-                grdOgrenciRapor.Columns[7].Visible = true;
+                grdOgrenciRapor.Columns[6].Visible = true;
             }
-            else if (grdOgrenciRapor.Columns[7].Visible == true)
+            else if (checkGsm.Checked == false)
             {
-                grdOgrenciRapor.Columns[7].Visible = false;
+                grdOgrenciRapor.Columns[6].Visible = false;
             }
         }
 
         private void checkFaks_CheckedChanged(object sender, EventArgs e)
         {
-            if (grdOgrenciRapor.Columns[8].Visible == false)
+            if (checkFaks.Checked == true)
             {
-                grdOgrenciRapor.Columns[8].Visible = true;
+                grdOgrenciRapor.Columns[7].Visible = true;
             }
-            else if (grdOgrenciRapor.Columns[8].Visible == true)
+            else if (checkFaks.Checked == false)
             {
-                grdOgrenciRapor.Columns[8].Visible = false;
+                grdOgrenciRapor.Columns[7].Visible = false;
             }
         }
 
         private void checkMail_CheckedChanged(object sender, EventArgs e)
         {
-            if (grdOgrenciRapor.Columns[9].Visible == false)
+            if (checkMail.Checked == true)
             {
-                grdOgrenciRapor.Columns[9].Visible = true;
+                grdOgrenciRapor.Columns[8].Visible = true;
             }
-            else if (grdOgrenciRapor.Columns[9].Visible == true)
+            else if (checkMail.Checked == false)
             {
-                grdOgrenciRapor.Columns[9].Visible = false;
+                grdOgrenciRapor.Columns[8].Visible = false;
             }
         }
 
         private void checkAdres_CheckedChanged(object sender, EventArgs e)
         {
-            if (grdOgrenciRapor.Columns[10].Visible == false)
+            if (checkAdres.Checked == true)
             {
-                grdOgrenciRapor.Columns[10].Visible = true;
+                grdOgrenciRapor.Columns[9].Visible = true;
             }
-            else if (grdOgrenciRapor.Columns[10].Visible == true)
+            else if (checkAdres.Checked == false)
             {
-                grdOgrenciRapor.Columns[10].Visible = false;
+                grdOgrenciRapor.Columns[9].Visible = false;
             }
         }
 
         private void checkSirket_CheckedChanged(object sender, EventArgs e)
         {
-            if (grdOgrenciRapor.Columns[11].Visible == false)
+            if (checkSirket.Checked == true)
             {
-                grdOgrenciRapor.Columns[11].Visible = true;
+                grdOgrenciRapor.Columns[10].Visible = true;
             }
-            else if (grdOgrenciRapor.Columns[11].Visible == true)
+            else if (checkSirket.Checked == false)
             {
-                grdOgrenciRapor.Columns[11].Visible = false;
+                grdOgrenciRapor.Columns[10].Visible = false;
             }
         }
 
         private void checkWeb_CheckedChanged(object sender, EventArgs e)
         {
-            if (grdOgrenciRapor.Columns[12].Visible == false)
+            if (checkWeb.Checked == true)
             {
-                grdOgrenciRapor.Columns[12].Visible = true;
+                grdOgrenciRapor.Columns[11].Visible = true;
             }
-            else if (grdOgrenciRapor.Columns[12].Visible == true)
+            else if (checkWeb.Checked == false)
             {
-                grdOgrenciRapor.Columns[12].Visible = false;
+                grdOgrenciRapor.Columns[11].Visible = false;
             }
         }
 
         private void checkID_CheckedChanged(object sender, EventArgs e)
         {
-            if (grdOgrenciRapor.Columns[1].Visible == false)
+            if (checkID.Checked == true)
             {
-                grdOgrenciRapor.Columns[1].Visible = true;
+                grdOgrenciRapor.Columns[0].Visible = true;
             }
-            else if (grdOgrenciRapor.Columns[1].Visible == true)
+            else if (checkID.Checked == false)
             {
-                grdOgrenciRapor.Columns[1].Visible = false;
+                grdOgrenciRapor.Columns[0].Visible = false;
+            }
+        }
+
+        private void checkAktifPasif_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkAktifPasif.Checked == true)
+            {
+                grdOgrenciRapor.Columns[12].Visible = true;
+            }
+            else if (checkAktifPasif.Checked == false)
+            {
+                grdOgrenciRapor.Columns[12].Visible = false;
+            }
+
+        }
+
+        private void checkKatAdi_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkKatAdi.Checked == true)
+            {
+                grdOgrenciRapor.Columns[13].Visible = true;
+            }
+            else if (checkKatAdi.Checked == false)
+            {
+                grdOgrenciRapor.Columns[13].Visible = false;
             }
         }
 
@@ -594,75 +680,345 @@ namespace kartApp
 
         }
 
-        
+
 
         private void btnCikti_Click(object sender, EventArgs e)
         {
-            int kontrol = 0;
-            foreach (DataGridViewRow row in grdOgrenciRapor.Rows)
+            
+            DataTable dt = new DataTable();
+
+
+            foreach (DataGridViewColumn col in grdOgrenciRapor.Columns)
             {
-                if (row.Cells[0].Value != null && row.Cells[0].Value.Equals(true))
+                if (grdOgrenciRapor.Columns[col.Index].Visible != false)
                 {
-                    row.Selected = true;
-                    row.DefaultCellStyle.SelectionBackColor = Color.LightSlateGray;
-                    kontrol = 1;
+                    dt.Columns.Add(col.Name);
                 }
                 else
-                    row.Selected = false;
+                {
+                    liste.Add(col.Name);
+                }
             }
 
-            if (kontrol == 0)
+            for (int i = 0; i < liste.Count; i++)
             {
-                DialogResult dialogresult = MessageBox.Show("Lütfen en az bir satır seçiniz.", "Hiçbir satır seçilmedi.", MessageBoxButtons.OK);
+                grdOgrenciRapor.Columns.Remove(liste[i].ToString());
+            }
+
+            foreach (DataGridViewRow row in grdOgrenciRapor.Rows)
+            {
+                row.Selected = true;
+
+            }
+
+
+            PrintPreviewDialog onizleme = new PrintPreviewDialog();
+            onizleme.Document = printDocument1;
+            onizleme.ShowDialog();
+            Application.Restart();
+
+
+
+            //if (checkTumunu.Checked == true)
+            //{
+                
+                
+
+            //}
+            //else
+            //{
+
+
+            //    int kontrol = 0;
+            //    foreach (DataGridViewRow row in grdOgrenciRapor.Rows)
+            //    {
+            //        if (row.Cells[0].Value != null && row.Cells[0].Value.Equals(true))
+            //        {
+            //            row.Selected = true;
+            //            row.DefaultCellStyle.SelectionBackColor = Color.LightSlateGray;
+            //            kontrol = 1;
+            //        }
+            //        else
+            //            row.Selected = false;
+            //    }
+
+            //    if (kontrol == 0)
+            //    {
+            //        DialogResult dialogresult = MessageBox.Show("Lütfen en az bir satır seçiniz.", "Hiçbir satır seçilmedi.", MessageBoxButtons.OK);
+            //        Application.Restart();
+            //    }
+            //    else
+            //    {
+                    
+            //        PrintPreviewDialog onizleme = new PrintPreviewDialog();
+            //        onizleme.Document = printDocument1;
+            //        onizleme.ShowDialog();
+            //        Application.Restart();
+
+            //    }
+
+      
+            //}
+
+            
+
+
+        }
+
+        
+
+        private void btnKatEkle_Click(object sender, EventArgs e)
+        {
+            if (btnKatEkle2.Text == "EKLE")
+            {
+                tbKategori.Text = tbKategori.Text.Trim();
+                string kat = Convert.ToString(tbKategori.Text);
+                grdKategori.DataSource = Yardimci.Tablo(Yardimci.KategoriEkle(kat));
+                grdKategori.DataSource = Yardimci.Tablo(Yardimci.KategoriGetir());
+            }
+            else if (btnKatEkle2.Text == "GÜNCELLE")
+            {
+                int satir = int.Parse(grdKategori.CurrentRow.Cells[0].Value.ToString());
+                tbKategori.Text = tbKategori.Text.Trim();
+                string kat = Convert.ToString(tbKategori.Text);
+                grdKategori.DataSource = Yardimci.Tablo(Yardimci.KategoriGuncelle(kat, satir));
+                grdKategori.DataSource = Yardimci.Tablo(Yardimci.KategoriGetir());
+            }
+
+
+            
+        }
+
+    
+        private void btnKatSil_Click(object sender, EventArgs e)
+        {
+
+            int satir = int.Parse(grdKategori.CurrentRow.Cells[0].Value.ToString());
+            DataTable dt = Yardimci.Tablo(Yardimci.SatirSayisiGetir(satir));
+            int kactane = int.Parse(dt.Rows[0][0].ToString());
+            
+            if (kactane > 0)
+            {
+                DialogResult dialogresult = MessageBox.Show("Lütfen tüm kayıtları sildikten sonra tekrar deneyin.", "Bu kategoriye ait kayıtlar var.", MessageBoxButtons.OK);
             }
             else
             {
-                for (int i = 0; i < (grdOgrenciRapor.Rows.Count) - 1; i++)
+                grdKategori.DataSource = Yardimci.Tablo(Yardimci.KategoriSil(satir));
+                grdKategori.DataSource = Yardimci.Tablo(Yardimci.KategoriGetir());
+            }
+
+        }
+
+        private void grdKategori_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int satir = int.Parse(grdKategori.CurrentRow.Cells[0].Value.ToString());
+            grdKategori.DataSource = Yardimci.Tablo(Yardimci.KategoriGetir2(satir));
+            btnKatEkle2.Enabled = false;
+            btnKatSil.Enabled = false;
+
+        }
+
+        private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            try
+            {
+                int iLeftMargin = e.MarginBounds.Left;
+                int iTopMargin = e.MarginBounds.Top;
+                bool bMorePagesToPrint = false;
+                int iTmpWidth = 0;
+                bFirstPage = true;
+
+                if (bFirstPage)
                 {
-                    DataGridViewBand band = grdOgrenciRapor.Rows[i];
-                    if (band.Selected == false)
+                    foreach (DataGridViewColumn GridCol in grdOgrenciRapor.Columns)
                     {
-                        band.Visible = false;
+                        iTmpWidth = (int)(Math.Floor((double)((double)GridCol.Width /
+                                       (double)iTotalWidth * (double)iTotalWidth *
+                                       ((double)e.MarginBounds.Width / (double)iTotalWidth))));
+
+                        iHeaderHeight = (int)(e.Graphics.MeasureString(GridCol.HeaderText,
+                                    GridCol.InheritedStyle.Font, iTmpWidth).Height) + 11;
+
+
+                        arrColumnLefts.Add(iLeftMargin);
+                        arrColumnWidths.Add(iTmpWidth);
+                        iLeftMargin += iTmpWidth;
+                    }
+                }
+
+                while (iRow <= grdOgrenciRapor.SelectedRows.Count - 1)
+                {
+                    DataGridViewRow GridRow = grdOgrenciRapor.SelectedRows[iRow];
+
+                    iCellHeight = GridRow.Height + 5;
+                    int iCount = 0;
+
+                    if (iTopMargin + iCellHeight >= e.MarginBounds.Height + e.MarginBounds.Top)
+                    {
+                        bNewPage = true;
+                        bFirstPage = false;
+                        bMorePagesToPrint = true;
+                        break;
                     }
                     else
                     {
-                        continue;
-                    }
+                        if (bNewPage)
+                        {
 
+                            e.Graphics.DrawString("Çıktı Başlığı", new Font(grdOgrenciRapor.Font, FontStyle.Bold),
+                                    Brushes.Black, e.MarginBounds.Left, e.MarginBounds.Top -
+                                    e.Graphics.MeasureString("Çıktı Başlığı", new Font(grdOgrenciRapor.Font,
+                                    FontStyle.Bold), e.MarginBounds.Width).Height - 13);
+
+                            String strDate = DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToShortTimeString();
+
+                            e.Graphics.DrawString(strDate, new Font(grdOgrenciRapor.Font, FontStyle.Bold),
+                                    Brushes.Black, e.MarginBounds.Left + (e.MarginBounds.Width -
+                                    e.Graphics.MeasureString(strDate, new Font(grdOgrenciRapor.Font,
+                                    FontStyle.Bold), e.MarginBounds.Width).Width), e.MarginBounds.Top -
+                                    e.Graphics.MeasureString("Çıktı Başlığı", new Font(new Font(grdOgrenciRapor.Font,
+                                    FontStyle.Bold), FontStyle.Bold), e.MarginBounds.Width).Height - 13);
+
+
+                            iTopMargin = e.MarginBounds.Top;
+                            foreach (DataGridViewColumn GridCol in grdOgrenciRapor.Columns)
+                            {
+                                e.Graphics.FillRectangle(new SolidBrush(Color.LightGray),
+                                    new Rectangle((int)arrColumnLefts[iCount], iTopMargin,
+                                    (int)arrColumnWidths[iCount], iHeaderHeight));
+
+                                e.Graphics.DrawRectangle(Pens.Black,
+                                    new Rectangle((int)arrColumnLefts[iCount], iTopMargin,
+                                    (int)arrColumnWidths[iCount], iHeaderHeight));
+
+                                e.Graphics.DrawString(GridCol.HeaderText, GridCol.InheritedStyle.Font,
+                                    new SolidBrush(GridCol.InheritedStyle.ForeColor),
+                                    new RectangleF((int)arrColumnLefts[iCount], iTopMargin,
+                                    (int)arrColumnWidths[iCount], iHeaderHeight), strFormat);
+                                iCount++;
+                            }
+                            bNewPage = false;
+                            iTopMargin += iHeaderHeight;
+                        }
+                        iCount = 0;
+
+                        foreach (DataGridViewCell Cel in GridRow.Cells)
+                        {
+                            if (Cel.Value != null)
+                            {
+                                e.Graphics.DrawString(Cel.Value.ToString(), Cel.InheritedStyle.Font,
+                                            new SolidBrush(Cel.InheritedStyle.ForeColor),
+                                            new RectangleF((int)arrColumnLefts[iCount], (float)iTopMargin,
+                                            (int)arrColumnWidths[iCount], (float)iCellHeight), strFormat);
+                            }
+
+                            e.Graphics.DrawRectangle(Pens.Black, new Rectangle((int)arrColumnLefts[iCount],
+                                    iTopMargin, (int)arrColumnWidths[iCount], iCellHeight));
+
+                            iCount++;
+                        }
+                    }
+                    iRow++;
+                    iTopMargin += iCellHeight;
                 }
 
-                grdOgrenciRapor.Columns[0].Visible = false;
 
-                copyAlltoClipboard();
-                Microsoft.Office.Interop.Excel.Application xlexcel;
-                Microsoft.Office.Interop.Excel.Workbook xlWorkBook;
-                Microsoft.Office.Interop.Excel.Worksheet xlWorkSheet;
-                object misValue = System.Reflection.Missing.Value;
-                xlexcel = new Excel.Application();
-                xlexcel.Visible = true;
-                xlWorkBook = xlexcel.Workbooks.Add(misValue);
-                xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
-                Excel.Range CR = (Excel.Range)xlWorkSheet.Cells[1, 1];
-                CR.Select();
-                xlWorkSheet.PasteSpecial(CR, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true);
-                grdOgrenciRapor.Columns[0].Visible = true;
-                grdOgrenciRapor.DataSource = Yardimci.Tablo(Yardimci.VeriGetir());
+                if (bMorePagesToPrint)
+                    e.HasMorePages = true;
+                else
+                    e.HasMorePages = false;
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
+        private void printDocument1_BeginPrint(object sender, PrintEventArgs e)
+        {
+            try
+            {
+                strFormat = new StringFormat();
+                strFormat.Alignment = StringAlignment.Near;
+                strFormat.LineAlignment = StringAlignment.Center;
+                strFormat.Trimming = StringTrimming.EllipsisCharacter;
+
+                arrColumnLefts.Clear();
+                arrColumnWidths.Clear();
+                iCellHeight = 0;
+                iRow = 0;
+                bFirstPage = true;
+                bNewPage = true;
+
+                iTotalWidth = 0;
+                foreach (DataGridViewColumn dgvGridCol in grdOgrenciRapor.Columns)
+                {
+                    iTotalWidth += dgvGridCol.Width;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cmbKategori_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkTumunu_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkTumunu.Checked == true)
+            {
+                checkAd.Checked = true;
+                checkSoyad.Checked = true;
+                checkUnvan.Checked = true;
+                checkTarih.Checked = true;
+                checkTelefon.Checked = true;
+                checkGsm.Checked = true;
+                checkFaks.Checked = true;
+                checkID.Checked = true;
+                checkKatAdi.Checked = true;
+                checkSirket.Checked = true;
+                checkWeb.Checked = true;
+                checkAdres.Checked = true;
+                checkAktifPasif.Checked = true;
+                checkMail.Checked = true;
+
+                for (int i = 0; i <= 13; i++)
+                {
+                    grdOgrenciRapor.Columns[i].Visible = true;
+                    
+                }
+            }
+            else if (checkTumunu.Checked == false)
+            {
+                checkAd.Checked = false;
+                checkSoyad.Checked = false;
+                checkUnvan.Checked = false;
+                checkTarih.Checked = false;
+                checkTelefon.Checked = false;
+                checkGsm.Checked = false;
+                checkFaks.Checked = false;
+                checkID.Checked = false;
+                checkKatAdi.Checked = false;
+                checkSirket.Checked = false;
+                checkWeb.Checked = false;
+                checkAdres.Checked = false;
+                checkAktifPasif.Checked = false;
+                checkMail.Checked = false;
+
+                for (int i = 0; i <= 13; i++)
+                {
+                    grdOgrenciRapor.Columns[i].Visible = false;
+                }
             }
 
-            
         }
-
-        private void copyAlltoClipboard()
-        {
-            grdOgrenciRapor.SelectAll();
-            
-            DataObject dataObj = grdOgrenciRapor.GetClipboardContent();
-            if (dataObj != null)
-                Clipboard.SetDataObject(dataObj);
-        }
+        
+        
 
         
     }
 }
-
