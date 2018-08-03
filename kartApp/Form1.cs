@@ -156,6 +156,7 @@ namespace kartApp
                     //string b = grdOgrenci.CurrentRow.Cells[1].Value.ToString();
                     string a = cmbKategori.SelectedValue.ToString();
                     Yardimci.Tablo(Yardimci.KisiKategoriGuncelle(a, b));
+
                 }
                 else
                 {
