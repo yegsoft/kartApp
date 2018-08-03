@@ -26,8 +26,7 @@ namespace kartApp
         int iRow = 0;
         bool bFirstPage = false;
         bool bNewPage = false;
-        int iHeaderHeight = 0;
-        int sayici = 0;
+        int iHeaderHeight = 0;        
         public Form1()
         {
             InitializeComponent();
@@ -101,6 +100,7 @@ namespace kartApp
             btnKatEkle2.Text = "EKLE";
             btnKatEkle2.Enabled = true;
             btnKatSil.Enabled = true;
+            lblCift.Text = "Kategoriye ait verileri görmek için çift tıklatın.";
             grdKategori.DataSource = Yardimci.Tablo(Yardimci.KategoriGetir());
 
             
@@ -405,10 +405,10 @@ namespace kartApp
             for (int i = 0; i < sayi-1; i++)
             {
 
-                string adX = grdOgrenci.Rows[i].Cells[1].Value.ToString();
+                string adX = grdOgrenci.Rows[i].Cells[2].Value.ToString();
                 bool esitMiAd = adX.Equals(ad, StringComparison.OrdinalIgnoreCase);
 
-                string soyadX = grdOgrenci.Rows[i].Cells[2].Value.ToString();
+                string soyadX = grdOgrenci.Rows[i].Cells[3].Value.ToString();
                 bool esitMiSoyad = soyadX.Equals(soyad, StringComparison.OrdinalIgnoreCase);
 
                 
@@ -423,11 +423,37 @@ namespace kartApp
                 {
                     continue;
                 }
-            }
-            
+            }            
 
         return sonuc;   
         }
+
+        private int zatenKategori(string kat)
+        {
+            int sayi = grdKategori.Rows.Count;
+            int sonuc = 0;
+
+            for (int i = 0; i < sayi - 1; i++)
+            {
+
+                string katX = grdKategori.Rows[i].Cells[1].Value.ToString();
+                bool esitMiKat = katX.Equals(kat, StringComparison.OrdinalIgnoreCase);               
+                
+                if (esitMiKat == true)
+                {
+                    sonuc = 1;                    
+                    break;
+                }
+                else
+                {
+                    continue;
+                }
+            }
+
+            return sonuc;
+        }
+
+
 
 
         private void time()
@@ -771,11 +797,22 @@ namespace kartApp
         private void btnKatEkle_Click(object sender, EventArgs e)
         {
             if (btnKatEkle2.Text == "EKLE")
-            {
+            {                
                 tbKategori.Text = tbKategori.Text.Trim();
                 string kat = Convert.ToString(tbKategori.Text);
-                grdKategori.DataSource = Yardimci.Tablo(Yardimci.KategoriEkle(kat));
-                grdKategori.DataSource = Yardimci.Tablo(Yardimci.KategoriGetir());
+                int sonuc = zatenKategori(kat);
+
+                if (sonuc == 0)
+                {
+                    grdKategori.DataSource = Yardimci.Tablo(Yardimci.KategoriEkle(kat));
+                    grdKategori.DataSource = Yardimci.Tablo(Yardimci.KategoriGetir());
+                }
+                else
+                {
+                    DialogResult dialogresult = MessageBox.Show("Bu isimde bir kategori zaten var.", "HATA", MessageBoxButtons.OK);
+                }
+
+                
             }
             else if (btnKatEkle2.Text == "GÜNCELLE")
             {
@@ -816,6 +853,11 @@ namespace kartApp
             grdKategori.DataSource = Yardimci.Tablo(Yardimci.KategoriGetir2(satir));
             btnKatEkle2.Enabled = false;
             btnKatSil.Enabled = false;
+            btnKatEkle2.Text = "GERİ";
+            btnKatSil.Text = "GERİ";
+            lblCift.Text = "Geri dönmek için üst kısımda herhangi bir yere tıklayın.";
+
+            
 
         }
 
@@ -1017,9 +1059,20 @@ namespace kartApp
             }
 
         }
-        
-        
 
-        
+        private void btnyenile3_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
+        }
+
+        private void btnYenile2_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
+        }
+
+        private void btnYenile1_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
+        }
     }
 }
