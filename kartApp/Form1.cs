@@ -47,12 +47,15 @@ namespace kartApp
             checkColumn.DisplayIndex = 0;
             grdOgrenci.Columns.Add(checkColumn);
 
-
-
-
             cmbKategori.DataSource = Yardimci.Tablo(Yardimci.KategoriGetir());
             cmbKategori.DisplayMember = "KatAdi";
             cmbKategori.ValueMember = "KatID";
+
+            grdOgrenciRapor.Columns[0].Visible = false;
+            for (int i = 4; i <= 13; i++)
+            {
+                grdOgrenciRapor.Columns[i].Visible = false;
+            }
         }
 
 
@@ -711,7 +714,7 @@ namespace kartApp
 
         private void btnCikti_Click(object sender, EventArgs e)
         {
-            
+            grdOgrenciRapor.Sort(grdOgrenciRapor.Columns["ID"], ListSortDirection.Descending);
             DataTable dt = new DataTable();
 
 
@@ -727,7 +730,7 @@ namespace kartApp
                 }
             }
 
-            for (int i = 0; i < liste.Count; i++)
+            for (int i = 0; i < liste.Count; i++)            
             {
                 grdOgrenciRapor.Columns.Remove(liste[i].ToString());
             }
@@ -738,9 +741,11 @@ namespace kartApp
 
             }
 
-
+            
             PrintPreviewDialog onizleme = new PrintPreviewDialog();
             onizleme.Document = printDocument1;
+            printDocument1.DefaultPageSettings.Landscape = true;
+            ((Form)onizleme).WindowState = FormWindowState.Maximized;
             onizleme.ShowDialog();
             Application.Restart();
 
@@ -862,7 +867,7 @@ namespace kartApp
         }
 
         private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
-        {
+        {            
             try
             {
                 int iLeftMargin = e.MarginBounds.Left;
@@ -908,9 +913,9 @@ namespace kartApp
                         if (bNewPage)
                         {
 
-                            e.Graphics.DrawString("Çıktı Başlığı", new Font(grdOgrenciRapor.Font, FontStyle.Bold),
+                            e.Graphics.DrawString("RAPOR", new Font(grdOgrenciRapor.Font, FontStyle.Bold),
                                     Brushes.Black, e.MarginBounds.Left, e.MarginBounds.Top -
-                                    e.Graphics.MeasureString("Çıktı Başlığı", new Font(grdOgrenciRapor.Font,
+                                    e.Graphics.MeasureString("RAPOR", new Font(grdOgrenciRapor.Font,
                                     FontStyle.Bold), e.MarginBounds.Width).Height - 13);
 
                             String strDate = DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToShortTimeString();
@@ -919,7 +924,7 @@ namespace kartApp
                                     Brushes.Black, e.MarginBounds.Left + (e.MarginBounds.Width -
                                     e.Graphics.MeasureString(strDate, new Font(grdOgrenciRapor.Font,
                                     FontStyle.Bold), e.MarginBounds.Width).Width), e.MarginBounds.Top -
-                                    e.Graphics.MeasureString("Çıktı Başlığı", new Font(new Font(grdOgrenciRapor.Font,
+                                    e.Graphics.MeasureString("RAPOR", new Font(new Font(grdOgrenciRapor.Font,
                                     FontStyle.Bold), FontStyle.Bold), e.MarginBounds.Width).Height - 13);
 
 
@@ -978,7 +983,7 @@ namespace kartApp
         }
 
         private void printDocument1_BeginPrint(object sender, PrintEventArgs e)
-        {
+        {           
             try
             {
                 strFormat = new StringFormat();
@@ -1005,10 +1010,7 @@ namespace kartApp
             }
         }
 
-        private void cmbKategori_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void checkTumunu_CheckedChanged(object sender, EventArgs e)
         {

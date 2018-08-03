@@ -634,7 +634,6 @@
             this.cmbKategori.Name = "cmbKategori";
             this.cmbKategori.Size = new System.Drawing.Size(227, 24);
             this.cmbKategori.TabIndex = 51;
-            this.cmbKategori.SelectedIndexChanged += new System.EventHandler(this.cmbKategori_SelectedIndexChanged);
             // 
             // lblArama
             // 
