@@ -103,6 +103,7 @@ namespace kartApp
             btnKatEkle2.Text = "EKLE";
             btnKatEkle2.Enabled = true;
             btnKatSil.Enabled = true;
+            btnYenile2.Enabled = true;
             lblCift.Text = "Kategoriye ait verileri görmek için çift tıklatın.";
             grdKategori.DataSource = Yardimci.Tablo(Yardimci.KategoriGetir());
 
@@ -155,8 +156,7 @@ namespace kartApp
                 if (row.Selected == true)
                 {
 
-                    string b = row.Cells[1].Value.ToString();
-                    //string b = grdOgrenci.CurrentRow.Cells[1].Value.ToString();
+                    string b = row.Cells[1].Value.ToString();                    
                     string a = cmbKategori.SelectedValue.ToString();
                     Yardimci.Tablo(Yardimci.KisiKategoriGuncelle(a, b));
 
@@ -216,16 +216,45 @@ namespace kartApp
 
         private void btnSil_Click(object sender, EventArgs e)
         {
-            
-
-            if (satir != null)
+            foreach (DataGridViewRow row in grdOgrenci.Rows)
             {
-                grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriSil(satir));
-                grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriGetir());
-                grdOgrenci.Sort(grdOgrenci.Columns["ID"], ListSortDirection.Ascending);
-                lblKayitBasarili.Text = "PASİFLENDİ";
-                time();
+                if (row.Cells[0].Value != null && row.Cells[0].Value.Equals(true))
+                {
+                    row.Selected = true;
+                    row.DefaultCellStyle.SelectionBackColor = Color.LightSlateGray;
+                }
+                else
+                    row.Selected = false;
             }
+
+
+
+            foreach (DataGridViewRow row in grdOgrenci.Rows)
+            {
+                if (row.Selected == true)
+                {
+
+                    string b = row.Cells[1].Value.ToString();                    
+                    Yardimci.Tablo(Yardimci.VeriSil(b));
+                    
+
+                }
+                else
+                {
+                    continue;
+                }
+            }
+
+            grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriGetir());
+
+            //if (satir != null)
+            //{
+            //    grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriSil(satir));
+            //    grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriGetir());
+            //    grdOgrenci.Sort(grdOgrenci.Columns["ID"], ListSortDirection.Ascending);
+            lblKayitBasarili.Text = "PASİFLENDİ";
+            time();
+            //}
         }
 
 
@@ -234,11 +263,42 @@ namespace kartApp
             DialogResult dialogresult = MessageBox.Show("Emin misiniz?", "SİL", MessageBoxButtons.YesNo);
             if (dialogresult==DialogResult.Yes)
             {
-            grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.KaliciSil(satir));
-            grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriGetir());
-            grdOgrenci.Sort(grdOgrenci.Columns["ID"], ListSortDirection.Ascending);
-            lblKayitBasarili.Text = "SİLİNDİ";
-            time();
+                foreach (DataGridViewRow row in grdOgrenci.Rows)
+                {
+                    if (row.Cells[0].Value != null && row.Cells[0].Value.Equals(true))
+                    {
+                        row.Selected = true;
+                        row.DefaultCellStyle.SelectionBackColor = Color.LightSlateGray;
+                    }
+                    else
+                        row.Selected = false;
+                }
+
+
+
+                foreach (DataGridViewRow row in grdOgrenci.Rows)
+                {
+                    if (row.Selected == true)
+                    {
+
+                        string b = row.Cells[1].Value.ToString();
+                        Yardimci.Tablo(Yardimci.KaliciSil(b));
+
+
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+
+                grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriGetir());
+
+                //grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.KaliciSil(satir));
+                //grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriGetir());
+                //grdOgrenci.Sort(grdOgrenci.Columns["ID"], ListSortDirection.Ascending);
+                lblKayitBasarili.Text = "SİLİNDİ";
+                time();
             }
 
         }
@@ -390,8 +450,39 @@ namespace kartApp
 
         public void gerial()
         {
-            grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.GeriAl(satir));
+            foreach (DataGridViewRow row in grdOgrenci.Rows)
+            {
+                if (row.Cells[0].Value != null && row.Cells[0].Value.Equals(true))
+                {
+                    row.Selected = true;
+                    row.DefaultCellStyle.SelectionBackColor = Color.LightSlateGray;
+                }
+                else
+                    row.Selected = false;
+            }
+
+
+
+            foreach (DataGridViewRow row in grdOgrenci.Rows)
+            {
+                if (row.Selected == true)
+                {
+
+                    string b = row.Cells[1].Value.ToString();
+                    Yardimci.Tablo(Yardimci.GeriAl(b));
+
+
+                }
+                else
+                {
+                    continue;
+                }
+            }
+
             grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.SilinenGoster());
+
+            //grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.GeriAl(satir));
+            //grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.SilinenGoster());
             lblKayitBasarili.Text = "GERİ ALINDI";
             time();
         }
@@ -858,6 +949,7 @@ namespace kartApp
             grdKategori.DataSource = Yardimci.Tablo(Yardimci.KategoriGetir2(satir));
             btnKatEkle2.Enabled = false;
             btnKatSil.Enabled = false;
+            btnYenile2.Enabled = false;
             btnKatEkle2.Text = "GERİ";
             btnKatSil.Text = "GERİ";
             lblCift.Text = "Geri dönmek için üst kısımda herhangi bir yere tıklayın.";
