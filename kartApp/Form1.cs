@@ -13,6 +13,17 @@ using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 using Word = Microsoft.Office.Interop.Word;
 
+
+///////////////        ÇAYKUR STAJ PROJESİ
+///////////////        VERİ TABANI YÖNETİM SİSTEMİ
+
+///////////////        330052
+///////////////        YUSUF ERHAN GÖZ
+///////////////        KARADENİZ TEKNİK ÜNİVERSİTESİ
+
+
+
+
 namespace kartApp
 {
     public partial class Form1 : Form
@@ -26,7 +37,9 @@ namespace kartApp
         int iRow = 0;
         bool bFirstPage = false;
         bool bNewPage = false;
-        int iHeaderHeight = 0;        
+        int iHeaderHeight = 0;      
+        
+
         public Form1()
         {
             InitializeComponent();
@@ -35,8 +48,6 @@ namespace kartApp
             grdOgrenci.Sort(grdOgrenci.Columns["ID"], ListSortDirection.Ascending);
             grdOgrenciRapor.DataSource = Yardimci.Tablo(Yardimci.VeriGetirRapor());
             grdKategori.DataSource = Yardimci.Tablo(Yardimci.KategoriGetir());
-
-
 
             DataGridViewCheckBoxColumn checkColumn = new DataGridViewCheckBoxColumn();
             checkColumn.Name = "X";
@@ -58,12 +69,23 @@ namespace kartApp
             }
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            //this.FormBorderStyle = FormBorderStyle.None;
+            this.WindowState = FormWindowState.Maximized;
+        }
+        string satir; //seçili satırların numarasını almak için global değişken. gerekirse int.Parse() ile veri tipi değiştirilebilir.
 
-        string satir;
+
+
+
+
+
+
+        //##############################-----  CELLCLİCK METODLARI  -----##############################
 
         private void grdOgrenci_CellClick_1(object sender, DataGridViewCellEventArgs e)
-        {   
-            
+        {            
             satir = grdOgrenci.CurrentRow.Cells[1].Value.ToString();
 
             if (btnIslem2.Text == "PASİFLER")
@@ -85,36 +107,41 @@ namespace kartApp
             tbAdresi.Text = grdOgrenci.CurrentRow.Cells[10].Value.ToString();
             tbSirketAdi.Text = grdOgrenci.CurrentRow.Cells[11].Value.ToString();
             tbWebSitesi.Text = grdOgrenci.CurrentRow.Cells[12].Value.ToString();
-
-            
-
-        }
-
+        }        
         
         private void grdKategori_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             satir = grdKategori.CurrentRow.Cells[0].Value.ToString();
-
             btnKatEkle2.Text = "GÜNCELLE";
-
         }
-        private void tabPage2_Click(object sender, EventArgs e)
+
+        private void grdKategori_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            btnKatEkle2.Text = "EKLE";
-            btnKatEkle2.Enabled = true;
-            btnKatSil.Enabled = true;
-            btnYenile2.Enabled = true;
-            lblCift.Text = "Kategoriye ait verileri görmek için çift tıklatın.";
-            grdKategori.DataSource = Yardimci.Tablo(Yardimci.KategoriGetir());
-
-            
+            int satir = int.Parse(grdKategori.CurrentRow.Cells[0].Value.ToString());
+            grdKategori.DataSource = Yardimci.Tablo(Yardimci.KategoriGetir2(satir));
+            btnKatEkle2.Enabled = false;
+            btnKatSil.Enabled = false;
+            btnYenile2.Enabled = false;
+            btnKatEkle2.Text = "GERİ";
+            btnKatSil.Text = "GERİ";
+            lblCift.Text = "Geri dönmek için üst kısımda herhangi bir yere tıklayın.";
         }
 
-
-        private void Form1_Click(object sender, EventArgs e)
+        private void grdOgrenciRapor_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+            int satir = int.Parse(grdOgrenciRapor.CurrentRow.Cells[0].Value.ToString());
+            menuSecim.SelectedTab = tabPage1;
+            grdOgrenci.Rows[satir - 1].Selected = true;
+            grdOgrenci.FirstDisplayedScrollingRowIndex = grdOgrenci.SelectedRows[0].Index;
         }
+
+        //---------------------------------------------------------------------------------------------
+
+
+
+
+
+        //##############################-----  TABPAGE METODLARI  -----##############################
 
         private void tabPage1_Click(object sender, EventArgs e)
         {
@@ -131,49 +158,25 @@ namespace kartApp
             tbSirketAdi.Clear();
             tbTarih.Clear();
             tbGsm.Clear();
-
-            
-
         }
 
-        private void btnTemizle_Click(object sender, EventArgs e)
+        private void tabPage2_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in grdOgrenci.Rows)
-            {
-                if (row.Cells[0].Value != null && row.Cells[0].Value.Equals(true))                
-                {
-                    row.Selected = true;
-                    row.DefaultCellStyle.SelectionBackColor = Color.LightSlateGray;                    
-                }
-                else
-                    row.Selected = false;
-            }
-
-
-
-            foreach (DataGridViewRow row in grdOgrenci.Rows)
-            {
-                if (row.Selected == true)
-                {
-
-                    string b = row.Cells[1].Value.ToString();                    
-                    string a = cmbKategori.SelectedValue.ToString();
-                    Yardimci.Tablo(Yardimci.KisiKategoriGuncelle(a, b));
-
-                }
-                else
-                {
-                    continue;
-                }
-            }
-
-
-                
-                grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriGetir());
-                grdOgrenci.ClearSelection();
-            
+            btnKatEkle2.Text = "EKLE";
+            btnKatEkle2.Enabled = true;
+            btnKatSil.Enabled = true;
+            btnYenile2.Enabled = true;
+            lblCift.Text = "Kategoriye ait verileri görmek için çift tıklatın.";
+            grdKategori.DataSource = Yardimci.Tablo(Yardimci.KategoriGetir());    
         }
 
+        //-------------------------------------------------------------------------------------------
+
+
+
+
+
+        //##############################-----  BUTON METODLARI  -----##############################
 
         private void btnIslem_Click(object sender, EventArgs e)
         {
@@ -183,19 +186,17 @@ namespace kartApp
             }
             else if (btnIslem.Text == "GÜNCELLE")
             {
-                DialogResult dialogresult = MessageBox.Show("Emin misiniz?", "GÜNCELLE", MessageBoxButtons.YesNo);                
+                DialogResult dialogresult = MessageBox.Show("Emin misiniz?", "GÜNCELLE", MessageBoxButtons.YesNo);
                 if (dialogresult == DialogResult.Yes)
                 {
                     guncelle();
                 }
-                
             }
             else if (btnIslem.Text == "GERİ AL")
             {
                 gerial();
             }
         }
-
 
         private void btnIslem2_Click(object sender, EventArgs e)
         {
@@ -213,6 +214,34 @@ namespace kartApp
             }
         }
 
+        private void btnKategori_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in grdOgrenci.Rows)
+            {
+                if (row.Cells[0].Value != null && row.Cells[0].Value.Equals(true))                
+                {
+                    row.Selected = true;
+                    row.DefaultCellStyle.SelectionBackColor = Color.LightSlateGray;                    
+                }
+                else
+                    row.Selected = false;
+            }
+            foreach (DataGridViewRow row in grdOgrenci.Rows)
+            {
+                if (row.Selected == true)
+                {
+                    string b = row.Cells[1].Value.ToString();                    
+                    string a = cmbKategori.SelectedValue.ToString();
+                    Yardimci.Tablo(Yardimci.KisiKategoriGuncelle(a, b));
+                }
+                else
+                {
+                    continue;
+                }
+            }
+                grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriGetir());
+                grdOgrenci.ClearSelection();            
+        }
 
         private void btnSil_Click(object sender, EventArgs e)
         {
@@ -227,36 +256,22 @@ namespace kartApp
                     row.Selected = false;
             }
 
-
-
             foreach (DataGridViewRow row in grdOgrenci.Rows)
             {
                 if (row.Selected == true)
                 {
-
                     string b = row.Cells[1].Value.ToString();                    
                     Yardimci.Tablo(Yardimci.VeriSil(b));
-                    
-
                 }
                 else
                 {
                     continue;
                 }
             }
-
             grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriGetir());
-
-            //if (satir != null)
-            //{
-            //    grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriSil(satir));
-            //    grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriGetir());
-            //    grdOgrenci.Sort(grdOgrenci.Columns["ID"], ListSortDirection.Ascending);
             lblKayitBasarili.Text = "PASİFLENDİ";
-            time();
-            //}
+            time();            
         }
-
 
         private void btnKaliciSil_Click(object sender, EventArgs e)
         {
@@ -274,17 +289,12 @@ namespace kartApp
                         row.Selected = false;
                 }
 
-
-
                 foreach (DataGridViewRow row in grdOgrenci.Rows)
                 {
                     if (row.Selected == true)
                     {
-
                         string b = row.Cells[1].Value.ToString();
                         Yardimci.Tablo(Yardimci.KaliciSil(b));
-
-
                     }
                     else
                     {
@@ -293,16 +303,112 @@ namespace kartApp
                 }
 
                 grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriGetir());
-
-                //grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.KaliciSil(satir));
-                //grdOgrenci.DataSource = Yardimci.Tablo(Yardimci.VeriGetir());
-                //grdOgrenci.Sort(grdOgrenci.Columns["ID"], ListSortDirection.Ascending);
                 lblKayitBasarili.Text = "SİLİNDİ";
                 time();
             }
-
         }
 
+        private void btnCikti_Click(object sender, EventArgs e)
+        {
+            grdOgrenciRapor.Sort(grdOgrenciRapor.Columns["ID"], ListSortDirection.Descending);
+            DataTable dt = new DataTable();
+
+            foreach (DataGridViewColumn col in grdOgrenciRapor.Columns)
+            {
+                if (grdOgrenciRapor.Columns[col.Index].Visible != false)
+                {
+                    dt.Columns.Add(col.Name);
+                }
+                else
+                {
+                    liste.Add(col.Name);
+                }
+            }
+            for (int i = 0; i < liste.Count; i++)
+            {
+                grdOgrenciRapor.Columns.Remove(liste[i].ToString());
+            }
+            foreach (DataGridViewRow row in grdOgrenciRapor.Rows)
+            {
+                row.Selected = true;
+
+            }
+
+            PrintPreviewDialog onizleme = new PrintPreviewDialog();
+            onizleme.Document = printDocument1;
+            printDocument1.DefaultPageSettings.Landscape = true;
+            ((Form)onizleme).WindowState = FormWindowState.Maximized;
+            onizleme.ShowDialog();
+            Application.Restart();
+        }
+
+        private void btnKatEkle_Click(object sender, EventArgs e)
+        {
+            if (btnKatEkle2.Text == "EKLE")
+            {
+                tbKategori.Text = tbKategori.Text.Trim();
+                string kat = Convert.ToString(tbKategori.Text);
+                int sonuc = zatenKategori(kat);
+
+                if (sonuc == 0)
+                {
+                    grdKategori.DataSource = Yardimci.Tablo(Yardimci.KategoriEkle(kat));
+                    grdKategori.DataSource = Yardimci.Tablo(Yardimci.KategoriGetir());
+                }
+                else
+                {
+                    DialogResult dialogresult = MessageBox.Show("Bu isimde bir kategori zaten var.", "HATA", MessageBoxButtons.OK);
+                }
+            }
+            else if (btnKatEkle2.Text == "GÜNCELLE")
+            {
+                int satir = int.Parse(grdKategori.CurrentRow.Cells[0].Value.ToString());
+                tbKategori.Text = tbKategori.Text.Trim();
+                string kat = Convert.ToString(tbKategori.Text);
+                grdKategori.DataSource = Yardimci.Tablo(Yardimci.KategoriGuncelle(kat, satir));
+                grdKategori.DataSource = Yardimci.Tablo(Yardimci.KategoriGetir());
+            }
+        }
+
+        private void btnKatSil_Click(object sender, EventArgs e)
+        {
+            int satir = int.Parse(grdKategori.CurrentRow.Cells[0].Value.ToString());
+            DataTable dt = Yardimci.Tablo(Yardimci.SatirSayisiGetir(satir));
+            int kactane = int.Parse(dt.Rows[0][0].ToString());
+
+            if (kactane > 0)
+            {
+                DialogResult dialogresult = MessageBox.Show("Lütfen tüm kayıtları sildikten sonra tekrar deneyin.", "Bu kategoriye ait kayıtlar var.", MessageBoxButtons.OK);
+            }
+            else
+            {
+                grdKategori.DataSource = Yardimci.Tablo(Yardimci.KategoriSil(satir));
+                grdKategori.DataSource = Yardimci.Tablo(Yardimci.KategoriGetir());
+            }
+        }
+
+        private void btnyenile3_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
+        }
+
+        private void btnYenile2_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
+        }
+
+        private void btnYenile1_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
+        }
+
+        //-----------------------------------------------------------------------------------------
+
+
+
+
+
+        //##############################-----  FONKSİYONLAR  -----##############################
 
         public void kaydet ()
         {            
@@ -406,7 +512,6 @@ namespace kartApp
             }
         }
 
-
         public void guncelle()
         {
             if (satir != null)
@@ -447,7 +552,6 @@ namespace kartApp
             }
         }
 
-
         public void gerial()
         {
             foreach (DataGridViewRow row in grdOgrenci.Rows)
@@ -487,7 +591,6 @@ namespace kartApp
             time();
         }
 
-   
         int tüm;
         private int zaten(string ad, string soyad)
         {
@@ -547,74 +650,36 @@ namespace kartApp
             return sonuc;
         }
 
+        //--------------------------------------------------------------------------------------
 
 
 
-        private void time()
-        {
-            timer1 = new Timer();
-            timer1.Interval = 2000;
-            timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            lblKayitBasarili.Visible = true;            
-            timer1.Start();           
-        }
 
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            timer1.Stop();
-            lblKayitBasarili.Visible = false;            
-        }
-
-
-        private void transparan()
-        {
-            lblAdi.BackColor = Color.Transparent;
-            lblAdresi.BackColor = Color.Transparent;
-            lblFaks.BackColor = Color.Transparent;
-            lblMail.BackColor = Color.Transparent;
-            lblUzanti.BackColor = Color.Transparent;
-            lblSirketAdi.BackColor = Color.Transparent;
-            lblSoyadi.BackColor = Color.Transparent;
-            lblTelefonu.BackColor = Color.Transparent;
-            lblUnvani.BackColor = Color.Transparent;
-            lblWebSitesi.BackColor = Color.Transparent;
-            lblTarih.BackColor = Color.Transparent;            
-            lblGsm.BackColor = Color.Transparent;
-            lblArama.BackColor = Color.Transparent;
-            lblAramaRapor.BackColor = Color.Transparent;
-            lblAramaRapor2.BackColor = Color.Transparent;
-
-
-        }
-
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            //this.FormBorderStyle = FormBorderStyle.None;
-            this.WindowState = FormWindowState.Maximized;
-        }
-
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
+        //##############################----- ANLIK SORGULAR  -----##############################
 
         private void tbArama_TextChanged(object sender, EventArgs e)
         {
             (grdOgrenci.DataSource as DataTable).DefaultView.RowFilter = string.Format("Ad like '%" + tbArama.Text + "%' OR Soyad like '%" + tbArama.Text + "%' OR Tarih like '%" + tbArama.Text + "%' OR SirketAd like '%" + tbArama.Text + "%'");
-
         }
 
         private void tbAramaRapor_TextChanged(object sender, EventArgs e)
         {
             (grdOgrenciRapor.DataSource as DataTable).DefaultView.RowFilter = string.Format("Ad like '%" + tbAramaRapor.Text + "%' OR Soyad like '%" + tbAramaRapor.Text + "%' OR Tarih like '%" + tbAramaRapor.Text + "%' OR SirketAd like '%" + tbAramaRapor.Text + "%'");
         }
+
         private void tbAramaRapor2_TextChanged(object sender, EventArgs e)
         {
             (grdOgrenciRapor.DataSource as DataTable).DefaultView.RowFilter = string.Format("KatAdi like '%" + tbAramaRapor2.Text + "%'");
         }
+
+        //--------------------------------------------------------------------------------------
+
+
+
+
+
+        //##############################----- CHECKBOX METODLARI  -----##############################
 
         private void checkAd_CheckedChanged(object sender, EventArgs e)
         {
@@ -795,171 +860,66 @@ namespace kartApp
             {
                 grdOgrenci.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
-
-
-
-
         }
 
-
-
-        private void btnCikti_Click(object sender, EventArgs e)
+        private void checkTumunu_CheckedChanged(object sender, EventArgs e)
         {
-            grdOgrenciRapor.Sort(grdOgrenciRapor.Columns["ID"], ListSortDirection.Descending);
-            DataTable dt = new DataTable();
-
-
-            foreach (DataGridViewColumn col in grdOgrenciRapor.Columns)
+            if (checkTumunu.Checked == true)
             {
-                if (grdOgrenciRapor.Columns[col.Index].Visible != false)
+                checkAd.Checked = true;
+                checkSoyad.Checked = true;
+                checkUnvan.Checked = true;
+                checkTarih.Checked = true;
+                checkTelefon.Checked = true;
+                checkGsm.Checked = true;
+                checkFaks.Checked = true;
+                checkID.Checked = true;
+                checkKatAdi.Checked = true;
+                checkSirket.Checked = true;
+                checkWeb.Checked = true;
+                checkAdres.Checked = true;
+                checkAktifPasif.Checked = true;
+                checkMail.Checked = true;
+
+                for (int i = 0; i <= 13; i++)
                 {
-                    dt.Columns.Add(col.Name);
+                    grdOgrenciRapor.Columns[i].Visible = true;
                 }
-                else
+            }
+            else if (checkTumunu.Checked == false)
+            {
+                checkAd.Checked = false;
+                checkSoyad.Checked = false;
+                checkUnvan.Checked = false;
+                checkTarih.Checked = false;
+                checkTelefon.Checked = false;
+                checkGsm.Checked = false;
+                checkFaks.Checked = false;
+                checkID.Checked = false;
+                checkKatAdi.Checked = false;
+                checkSirket.Checked = false;
+                checkWeb.Checked = false;
+                checkAdres.Checked = false;
+                checkAktifPasif.Checked = false;
+                checkMail.Checked = false;
+
+                for (int i = 0; i <= 13; i++)
                 {
-                    liste.Add(col.Name);
+                    grdOgrenciRapor.Columns[i].Visible = false;
                 }
             }
-
-            for (int i = 0; i < liste.Count; i++)            
-            {
-                grdOgrenciRapor.Columns.Remove(liste[i].ToString());
-            }
-
-            foreach (DataGridViewRow row in grdOgrenciRapor.Rows)
-            {
-                row.Selected = true;
-
-            }
-
-            
-            PrintPreviewDialog onizleme = new PrintPreviewDialog();
-            onizleme.Document = printDocument1;
-            printDocument1.DefaultPageSettings.Landscape = true;
-            ((Form)onizleme).WindowState = FormWindowState.Maximized;
-            onizleme.ShowDialog();
-            Application.Restart();
-
-
-
-            //if (checkTumunu.Checked == true)
-            //{
-                
-                
-
-            //}
-            //else
-            //{
-
-
-            //    int kontrol = 0;
-            //    foreach (DataGridViewRow row in grdOgrenciRapor.Rows)
-            //    {
-            //        if (row.Cells[0].Value != null && row.Cells[0].Value.Equals(true))
-            //        {
-            //            row.Selected = true;
-            //            row.DefaultCellStyle.SelectionBackColor = Color.LightSlateGray;
-            //            kontrol = 1;
-            //        }
-            //        else
-            //            row.Selected = false;
-            //    }
-
-            //    if (kontrol == 0)
-            //    {
-            //        DialogResult dialogresult = MessageBox.Show("Lütfen en az bir satır seçiniz.", "Hiçbir satır seçilmedi.", MessageBoxButtons.OK);
-            //        Application.Restart();
-            //    }
-            //    else
-            //    {
-                    
-            //        PrintPreviewDialog onizleme = new PrintPreviewDialog();
-            //        onizleme.Document = printDocument1;
-            //        onizleme.ShowDialog();
-            //        Application.Restart();
-
-            //    }
-
-      
-            //}
-
-            
-
-
         }
 
-        
-
-        private void btnKatEkle_Click(object sender, EventArgs e)
-        {
-            if (btnKatEkle2.Text == "EKLE")
-            {                
-                tbKategori.Text = tbKategori.Text.Trim();
-                string kat = Convert.ToString(tbKategori.Text);
-                int sonuc = zatenKategori(kat);
-
-                if (sonuc == 0)
-                {
-                    grdKategori.DataSource = Yardimci.Tablo(Yardimci.KategoriEkle(kat));
-                    grdKategori.DataSource = Yardimci.Tablo(Yardimci.KategoriGetir());
-                }
-                else
-                {
-                    DialogResult dialogresult = MessageBox.Show("Bu isimde bir kategori zaten var.", "HATA", MessageBoxButtons.OK);
-                }
-
-                
-            }
-            else if (btnKatEkle2.Text == "GÜNCELLE")
-            {
-                int satir = int.Parse(grdKategori.CurrentRow.Cells[0].Value.ToString());
-                tbKategori.Text = tbKategori.Text.Trim();
-                string kat = Convert.ToString(tbKategori.Text);
-                grdKategori.DataSource = Yardimci.Tablo(Yardimci.KategoriGuncelle(kat, satir));
-                grdKategori.DataSource = Yardimci.Tablo(Yardimci.KategoriGetir());
-            }
+        //------------------------------------------------------------------------------------------
 
 
-            
-        }
 
-    
-        private void btnKatSil_Click(object sender, EventArgs e)
-        {
 
-            int satir = int.Parse(grdKategori.CurrentRow.Cells[0].Value.ToString());
-            DataTable dt = Yardimci.Tablo(Yardimci.SatirSayisiGetir(satir));
-            int kactane = int.Parse(dt.Rows[0][0].ToString());
-            
-            if (kactane > 0)
-            {
-                DialogResult dialogresult = MessageBox.Show("Lütfen tüm kayıtları sildikten sonra tekrar deneyin.", "Bu kategoriye ait kayıtlar var.", MessageBoxButtons.OK);
-            }
-            else
-            {
-                grdKategori.DataSource = Yardimci.Tablo(Yardimci.KategoriSil(satir));
-                grdKategori.DataSource = Yardimci.Tablo(Yardimci.KategoriGetir());
-            }
 
-        }
-
-        private void grdKategori_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            int satir = int.Parse(grdKategori.CurrentRow.Cells[0].Value.ToString());
-            grdKategori.DataSource = Yardimci.Tablo(Yardimci.KategoriGetir2(satir));
-            btnKatEkle2.Enabled = false;
-            btnKatSil.Enabled = false;
-            btnYenile2.Enabled = false;
-            btnKatEkle2.Text = "GERİ";
-            btnKatSil.Text = "GERİ";
-            lblCift.Text = "Geri dönmek için üst kısımda herhangi bir yere tıklayın.";
-
-            
-
-        }
+        //##############################----- YAZDIRMA  -----##############################
 
         private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
-        {            
+        {
             try
             {
                 int iLeftMargin = e.MarginBounds.Left;
@@ -978,7 +938,6 @@ namespace kartApp
 
                         iHeaderHeight = (int)(e.Graphics.MeasureString(GridCol.HeaderText,
                                     GridCol.InheritedStyle.Font, iTmpWidth).Height) + 11;
-
 
                         arrColumnLefts.Add(iLeftMargin);
                         arrColumnWidths.Add(iTmpWidth);
@@ -1004,7 +963,6 @@ namespace kartApp
                     {
                         if (bNewPage)
                         {
-
                             e.Graphics.DrawString("RAPOR", new Font(grdOgrenciRapor.Font, FontStyle.Bold),
                                     Brushes.Black, e.MarginBounds.Left, e.MarginBounds.Top -
                                     e.Graphics.MeasureString("RAPOR", new Font(grdOgrenciRapor.Font,
@@ -1018,7 +976,6 @@ namespace kartApp
                                     FontStyle.Bold), e.MarginBounds.Width).Width), e.MarginBounds.Top -
                                     e.Graphics.MeasureString("RAPOR", new Font(new Font(grdOgrenciRapor.Font,
                                     FontStyle.Bold), FontStyle.Bold), e.MarginBounds.Width).Height - 13);
-
 
                             iTopMargin = e.MarginBounds.Top;
                             foreach (DataGridViewColumn GridCol in grdOgrenciRapor.Columns)
@@ -1062,7 +1019,6 @@ namespace kartApp
                     iTopMargin += iCellHeight;
                 }
 
-
                 if (bMorePagesToPrint)
                     e.HasMorePages = true;
                 else
@@ -1075,7 +1031,7 @@ namespace kartApp
         }
 
         private void printDocument1_BeginPrint(object sender, PrintEventArgs e)
-        {           
+        {
             try
             {
                 strFormat = new StringFormat();
@@ -1102,71 +1058,49 @@ namespace kartApp
             }
         }
 
-        
+        //---------------------------------------------------------------------------------
 
-        private void checkTumunu_CheckedChanged(object sender, EventArgs e)
+
+
+
+
+
+        //##############################----- EKSTRA METOTLAR  -----##############################
+
+        private void time()
         {
-            if (checkTumunu.Checked == true)
-            {
-                checkAd.Checked = true;
-                checkSoyad.Checked = true;
-                checkUnvan.Checked = true;
-                checkTarih.Checked = true;
-                checkTelefon.Checked = true;
-                checkGsm.Checked = true;
-                checkFaks.Checked = true;
-                checkID.Checked = true;
-                checkKatAdi.Checked = true;
-                checkSirket.Checked = true;
-                checkWeb.Checked = true;
-                checkAdres.Checked = true;
-                checkAktifPasif.Checked = true;
-                checkMail.Checked = true;
-
-                for (int i = 0; i <= 13; i++)
-                {
-                    grdOgrenciRapor.Columns[i].Visible = true;
-                    
-                }
-            }
-            else if (checkTumunu.Checked == false)
-            {
-                checkAd.Checked = false;
-                checkSoyad.Checked = false;
-                checkUnvan.Checked = false;
-                checkTarih.Checked = false;
-                checkTelefon.Checked = false;
-                checkGsm.Checked = false;
-                checkFaks.Checked = false;
-                checkID.Checked = false;
-                checkKatAdi.Checked = false;
-                checkSirket.Checked = false;
-                checkWeb.Checked = false;
-                checkAdres.Checked = false;
-                checkAktifPasif.Checked = false;
-                checkMail.Checked = false;
-
-                for (int i = 0; i <= 13; i++)
-                {
-                    grdOgrenciRapor.Columns[i].Visible = false;
-                }
-            }
-
+            timer1 = new Timer();
+            timer1.Interval = 2000;
+            timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            lblKayitBasarili.Visible = true;            
+            timer1.Start();           
         }
 
-        private void btnyenile3_Click(object sender, EventArgs e)
+        private void timer1_Tick(object sender, EventArgs e)
         {
-            Application.Restart();
+            timer1.Stop();
+            lblKayitBasarili.Visible = false;            
         }
 
-        private void btnYenile2_Click(object sender, EventArgs e)
+        private void transparan()
         {
-            Application.Restart();
+            lblAdi.BackColor = Color.Transparent;
+            lblAdresi.BackColor = Color.Transparent;
+            lblFaks.BackColor = Color.Transparent;
+            lblMail.BackColor = Color.Transparent;
+            lblUzanti.BackColor = Color.Transparent;
+            lblSirketAdi.BackColor = Color.Transparent;
+            lblSoyadi.BackColor = Color.Transparent;
+            lblTelefonu.BackColor = Color.Transparent;
+            lblUnvani.BackColor = Color.Transparent;
+            lblWebSitesi.BackColor = Color.Transparent;
+            lblTarih.BackColor = Color.Transparent;            
+            lblGsm.BackColor = Color.Transparent;
+            lblArama.BackColor = Color.Transparent;
+            lblAramaRapor.BackColor = Color.Transparent;
+            lblAramaRapor2.BackColor = Color.Transparent;
         }
 
-        private void btnYenile1_Click(object sender, EventArgs e)
-        {
-            Application.Restart();
-        }
+        //----------------------------------------------------------------------------------------
     }
 }

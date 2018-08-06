@@ -102,8 +102,5 @@ namespace kartApp
             string sorgu = "update AnaTablo set KatID = '" + isim + "' where ID = " + satir ;
             return sorgu;
         }
-
-
-
     }
 }
